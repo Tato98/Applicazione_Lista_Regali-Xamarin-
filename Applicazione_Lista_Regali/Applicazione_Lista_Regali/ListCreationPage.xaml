@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Applicazione_Lista_Regali.ListCreationPage">
+    
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <Entry
+                x:Name="nomeLista"
+                Placeholder="Nome"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Keyboard="Text"
+                MaxLength="15"
+                Margin="10"/>
+            <Entry
+                x:Name="descrizioneLista"
+                Placeholder="Descrizione"
+                VerticalOptions="Start"
+                HorizontalOptions="FillAndExpand"
+                Keyboard="Text"
+                MaxLength="50"
+                Margin="10"/>
+            <StackLayout
+                Orientation="Horizontal">
+
+                <Entry
+                    x:Name="budgetLista"
+                    Placeholder="Budget"
+                    VerticalOptions="Start"
+                    HorizontalOptions="FillAndExpand"
+                    Keyboard="Numeric"
+                    MaxLength="10"
+                    Margin="10"/>
+                
+                <Button
+                    Text="contatti"
+                    Clicked="ButtonContacts_Clicked"
+                    Margin="10">
+                </Button>
+
+            </StackLayout>
+
+            <StackLayout
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+
+            </StackLayout>
+
+            <StackLayout
+                Orientation="Horizontal">
+
+                <Button
+                    Text="cancella"
+                    Clicked="ButtonCancel_Clicked"
+                    HorizontalOptions="StartAndExpand"
+                    VerticalOptions="Start"
+                    TextColor="White"
+                    BackgroundColor="OrangeRed"
+                    Margin="10">
+                </Button>
+
+                <Button
+                    Text="crea"
+                    Clicked="ButtonCreate_Clicked"
+                    TextColor="White"
+                    BackgroundColor="OrangeRed"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="10">
+                </Button>
+
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+    
+</ContentPage>
