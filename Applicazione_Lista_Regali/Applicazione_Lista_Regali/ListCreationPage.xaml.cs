@@ -30,10 +30,10 @@ namespace Applicazione_Lista_Regali
 
         private void ButtonCreate_Clicked(object sender, EventArgs e)
         {
-            String nome, descrizione, budget;
+            String nome, descrizione;
             
             //controlli descrizione
-            if (!descrizioneLista.Text.Equals(null))
+            if (!descrizioneLista.Equals(null))
             {
                 descrizione = descrizioneLista.Text;
             }
@@ -42,11 +42,11 @@ namespace Applicazione_Lista_Regali
                 descrizione = "Nessuna descrizione";
             }
 
-            decimal value;
+            double value;
             //controllo budget
-            if (!budgetLista.Text.Equals("null"))
+            if (!budgetLista.Equals(null))
             {
-                value = decimal.Parse(budgetLista.Text);
+                value = double.Parse(budgetLista.Text);
             }
             else
             {
@@ -54,14 +54,14 @@ namespace Applicazione_Lista_Regali
             }
 
             //controlli nome lista
-            if (!nomeLista.Text.Equals(null))
+            if (!nomeLista.Equals(null))
             {
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))
                 {
-                    //ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), contatti);
-                    //this.mainPage.listaRegali = listaRegali;
-                    //Navigation.PopToRootAsync();
+                    //ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
+                    //this.mainPage.ListaRegali = listaRegali;
+                    Navigation.PopToRootAsync();
                 }
                 else
                 {
@@ -73,8 +73,8 @@ namespace Applicazione_Lista_Regali
                 //Toast message: "Inserire il nome della lista"
             }
 
-            this.mainPage.name = nomeLista.Text;
-            Navigation.PopToRootAsync();
+            //this.mainPage.name = nomeLista.Text;
+            //Navigation.PopToRootAsync();
         }
 
         private void ButtonContacts_Clicked(object sender, EventArgs e)

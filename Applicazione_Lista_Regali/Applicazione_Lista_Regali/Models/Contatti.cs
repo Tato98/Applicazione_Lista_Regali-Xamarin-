@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Applicazione_Lista_Regali.Models
 {
-    class Contatti
+    public class Contatti
     {
         private String nome
         {

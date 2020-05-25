@@ -8,11 +8,6 @@
 
     <StackLayout>
 
-        <Label
-            x:Name="label">
-            
-        </Label>
-        
         <Button
             Text="Premi"
             Clicked="ButtonAdd_Clicked"

@@ -10,7 +10,7 @@ namespace Applicazione_Lista_Regali
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage("ciao"));
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

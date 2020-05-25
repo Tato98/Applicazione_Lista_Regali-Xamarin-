@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Applicazione_Lista_Regali.Models
 {
-    class ListaRegali
+    public class ListaRegali
     {
         public String nome
         {

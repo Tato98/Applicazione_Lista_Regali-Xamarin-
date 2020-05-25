@@ -12,7 +12,7 @@ namespace Applicazione_Lista_Regali
     public partial class MainPage : ContentPage
     {
         List<ListaRegali> lista = new List<ListaRegali>();
-        private ListaRegali ListaRegali
+        public ListaRegali ListaRegali
         {
             get { return ListaRegali; }
             set { ListaRegali = value; }
@@ -24,16 +24,14 @@ namespace Applicazione_Lista_Regali
             set { name = value; }
         }
 
-        public MainPage(String name)
+        public MainPage()
         {
             InitializeComponent();
-            this.ListaRegali = ListaRegali;
-            label.Text = name;
         }
 
         private void ButtonAdd_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ListCreationPage(this, GetNameList()), true);
+            Navigation.PushAsync(new ListCreationPage(this, GetNameList()));
         }
 
         public List<String> GetNameList()
