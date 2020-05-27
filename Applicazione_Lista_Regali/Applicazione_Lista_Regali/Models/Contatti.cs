@@ -7,21 +7,9 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class Contatti
     {
-        private string Nome
-        {
-            get;
-            set;
-        }
-        private string Numero
-        {
-            get;
-            set;
-        }
-        private List<Regalo> Regali
-        {
-            get;
-            set;
-        }
+        private string Nome { get; set; }
+        private string Numero { get; set; }
+        private List<Regalo> Regali { get; set; }
 
         public Contatti(string nome, string numero, List<Regalo> regali)
         {

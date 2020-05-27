@@ -6,20 +6,4 @@
              mc:Ignorable="d"
              x:Class="Applicazione_Lista_Regali.MainPage">
 
-    <StackLayout>
-
-        <Label
-            x:Name="label">
-        </Label>
-
-        <Button
-            Text="Premi"
-            Clicked="ButtonAdd_Clicked"
-            HorizontalOptions="End"
-            VerticalOptions="EndAndExpand"
-            Margin="10">
-        </Button>
-
-    </StackLayout>
-
 </ContentPage>

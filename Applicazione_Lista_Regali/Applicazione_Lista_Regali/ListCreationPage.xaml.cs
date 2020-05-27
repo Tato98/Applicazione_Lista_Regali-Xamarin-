@@ -14,15 +14,13 @@ namespace Applicazione_Lista_Regali
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListCreationPage : ContentPage
     {
-        MainPage mainPage;
         List<String> nomi;
         List<Contatti> contatti;
         SendData sendData;
 
-        public ListCreationPage(MainPage mainPage, List<String> nomi, SendData sendData)
+        public ListCreationPage(List<String> nomi, SendData sendData)
         {
             InitializeComponent();
-            this.mainPage = mainPage;
             this.nomi = nomi;
             this.sendData = sendData;
         }
@@ -63,7 +61,6 @@ namespace Applicazione_Lista_Regali
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))
                 {
-                    //mainPage.ListaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
                     ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
                     sendData.ReceiveData(listaRegali);
                     Navigation.PopToRootAsync();

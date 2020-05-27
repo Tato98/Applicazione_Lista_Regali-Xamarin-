@@ -6,26 +6,10 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class ListaRegali
     {
-        public string Nome
-        {
-            get;
-            set;
-        }
-        public string Descrizione
-        {
-            get;
-            set;
-        }
-        public string Budget
-        {
-            get;
-            set;
-        }
-        public List<Contatti> Contatti
-        {
-            get;
-            set;
-        }
+        public string Nome { get; set; }
+        public string Descrizione { get; set; }
+        public string Budget { get; set; }
+        public List<Contatti> Contatti { get; set; }
 
         public ListaRegali(string nome, string descrizione, string budget, List<Contatti> contatti)
         {
