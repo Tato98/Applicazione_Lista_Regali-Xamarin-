@@ -8,23 +8,23 @@ namespace Applicazione_Lista_Regali.Models
     {
         public string Nome
         {
-            get { return Nome; }
-            set { Nome = value; }
+            get;
+            set;
         }
         public string Descrizione
         {
-            get { return Descrizione; }
-            set { Descrizione = value; }
+            get;
+            set;
         }
         public string Budget
         {
-            get { return Budget; }
-            set { Budget = value; }
+            get;
+            set;
         }
         public List<Contatti> Contatti
         {
-            get { return Contatti; }
-            set { Contatti = value; }
+            get;
+            set;
         }
 
         public ListaRegali(string nome, string descrizione, string budget, List<Contatti> contatti)

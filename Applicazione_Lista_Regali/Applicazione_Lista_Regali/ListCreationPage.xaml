@@ -8,7 +8,8 @@
     
     <ContentPage.Content>
 
-        <StackLayout>
+        <StackLayout
+            Padding="10">
 
             <Entry
                 x:Name="nomeLista"

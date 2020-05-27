@@ -65,7 +65,7 @@ namespace Applicazione_Lista_Regali
                 {
                     //mainPage.ListaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
                     ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
-                    sendData.ReceiveData(nome);
+                    sendData.ReceiveData(listaRegali);
                     Navigation.PopToRootAsync();
                 }
                 else
@@ -86,7 +86,7 @@ namespace Applicazione_Lista_Regali
 
         public interface SendData
         {
-            void ReceiveData(string listaRegali);
+            void ReceiveData(ListaRegali listaRegali);
         }
     }
 }

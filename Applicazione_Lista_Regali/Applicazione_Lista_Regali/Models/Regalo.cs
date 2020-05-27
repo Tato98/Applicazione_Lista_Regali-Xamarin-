@@ -8,13 +8,13 @@ namespace Applicazione_Lista_Regali.Models
     {
         private string Nome
         {
-            get { return Nome; }
-            set { Nome = value; }
+            get;
+            set;
         }
         private string Prezzo
         {
-            get { return Prezzo; }
-            set { Prezzo = value; }
+            get;
+            set;
         }
 
         public Regalo(string nome, string prezzo)

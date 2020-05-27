@@ -9,18 +9,18 @@ namespace Applicazione_Lista_Regali.Models
     {
         private string Nome
         {
-            get { return Nome; }
-            set { Nome = value; }
+            get;
+            set;
         }
         private string Numero
         {
-            get { return Numero; }
-            set { Numero = value; }
+            get;
+            set;
         }
         private List<Regalo> Regali
         {
-            get { return Regali; }
-            set { Regali = value; }
+            get;
+            set;
         }
 
         public Contatti(string nome, string numero, List<Regalo> regali)

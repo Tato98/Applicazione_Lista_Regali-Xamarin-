@@ -38,10 +38,10 @@ namespace Applicazione_Lista_Regali
             return listaNomi;
         }
 
-        public void ReceiveData(string listaRegali)
+        public void ReceiveData(ListaRegali listaRegali)
         {
-            //lista.Add(listaRegali);
-            label.Text = listaRegali;
+            lista.Add(listaRegali);
+            label.Text = listaRegali.Nome;
         }
     }
 }
