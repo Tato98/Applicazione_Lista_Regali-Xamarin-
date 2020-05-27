@@ -7,27 +7,27 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class Contatti
     {
-        private String nome
+        private string Nome
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return Nome; }
+            set { Nome = value; }
         }
-        private String numero
+        private string Numero
         {
-            get { return numero; }
-            set { numero = value; }
+            get { return Numero; }
+            set { Numero = value; }
         }
-        private List<Regalo> regali
+        private List<Regalo> Regali
         {
-            get { return regali; }
-            set { regali = value; }
+            get { return Regali; }
+            set { Regali = value; }
         }
 
-        public Contatti(String nome, String numero, List<Regalo> regali)
+        public Contatti(string nome, string numero, List<Regalo> regali)
         {
-            this.nome = nome;
-            this.numero = numero;
-            this.regali = regali;
+            this.Nome = nome;
+            this.Numero = numero;
+            this.Regali = regali;
         }
     }
 }

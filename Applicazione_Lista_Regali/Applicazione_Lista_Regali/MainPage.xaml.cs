@@ -9,7 +9,7 @@ namespace Applicazione_Lista_Regali
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class MainPage : ContentPage
+    public partial class MainPage : ContentPage, ListCreationPage.SendData
     {
         List<ListaRegali> lista = new List<ListaRegali>();
         public ListaRegali ListaRegali
@@ -18,20 +18,14 @@ namespace Applicazione_Lista_Regali
             set { ListaRegali = value; }
         }
 
-        public String name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public MainPage()
+        public MainPage(ListaRegali listaRegali)
         {
             InitializeComponent();
         }
 
         private void ButtonAdd_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ListCreationPage(this, GetNameList()));
+            Navigation.PushAsync(new ListCreationPage(this, GetNameList(), this));
         }
 
         public List<String> GetNameList()
@@ -39,9 +33,15 @@ namespace Applicazione_Lista_Regali
             List<String> listaNomi = new List<String>();
             foreach (ListaRegali lr in this.lista)
             {
-                listaNomi.Add(lr.nome);
+                listaNomi.Add(lr.Nome);
             }
             return listaNomi;
+        }
+
+        public void ReceiveData(string listaRegali)
+        {
+            //lista.Add(listaRegali);
+            label.Text = listaRegali;
         }
     }
 }

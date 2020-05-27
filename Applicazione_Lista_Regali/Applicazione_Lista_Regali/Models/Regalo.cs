@@ -6,21 +6,21 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class Regalo
     {
-        private String nome
+        private string Nome
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return Nome; }
+            set { Nome = value; }
         }
-        private String prezzo
+        private string Prezzo
         {
-            get { return prezzo; }
-            set { prezzo = value; }
+            get { return Prezzo; }
+            set { Prezzo = value; }
         }
 
-        public Regalo(String nome, String prezzo)
+        public Regalo(string nome, string prezzo)
         {
-            this.nome = nome;
-            this.prezzo = prezzo;
+            this.Nome = nome;
+            this.Prezzo = prezzo;
         }
     }
 }

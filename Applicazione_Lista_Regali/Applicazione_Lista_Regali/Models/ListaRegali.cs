@@ -6,33 +6,33 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class ListaRegali
     {
-        public String nome
+        public string Nome
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return Nome; }
+            set { Nome = value; }
         }
-        public String descrizione
+        public string Descrizione
         {
-            get { return descrizione; }
-            set { descrizione = value; }
+            get { return Descrizione; }
+            set { Descrizione = value; }
         }
-        public String budget
+        public string Budget
         {
-            get { return budget; }
-            set { budget = value; }
+            get { return Budget; }
+            set { Budget = value; }
         }
-        public List<Contatti> contatti
+        public List<Contatti> Contatti
         {
-            get { return contatti; }
-            set { contatti = value; }
+            get { return Contatti; }
+            set { Contatti = value; }
         }
 
-        public ListaRegali(String nome, String descrizione, String budget, List<Contatti> contatti)
+        public ListaRegali(string nome, string descrizione, string budget, List<Contatti> contatti)
         {
-            this.nome = nome;
-            this.descrizione = descrizione;
-            this.budget = budget;
-            this.contatti = contatti;
+            this.Nome = nome;
+            this.Descrizione = descrizione;
+            this.Budget = budget;
+            this.Contatti = contatti;
         }
     }
 }
