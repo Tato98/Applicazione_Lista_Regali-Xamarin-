@@ -31,9 +31,10 @@ namespace Applicazione_Lista_Regali
         private void ButtonCreate_Clicked(object sender, EventArgs e)
         {
             String nome, descrizione;
-            
+            decimal value;
+
             //controlli descrizione
-            if (!descrizioneLista.Equals(null))
+            if (descrizioneLista.Text != null)
             {
                 descrizione = descrizioneLista.Text;
             }
@@ -42,11 +43,10 @@ namespace Applicazione_Lista_Regali
                 descrizione = "Nessuna descrizione";
             }
 
-            double value;
             //controllo budget
-            if (!budgetLista.Equals(null))
+            if (budgetLista.Text != null)
             {
-                value = double.Parse(budgetLista.Text);
+                value = decimal.Parse(budgetLista.Text);
             }
             else
             {
@@ -54,14 +54,13 @@ namespace Applicazione_Lista_Regali
             }
 
             //controlli nome lista
-            if (!nomeLista.Equals(null))
+            if (nomeLista.Text != null)
             {
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))
                 {
-                    //ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
-                    //this.mainPage.ListaRegali = listaRegali;
-                    Navigation.PopToRootAsync();
+                    //mainPage.ListaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
+                    //Navigation.PopToRootAsync();
                 }
                 else
                 {
