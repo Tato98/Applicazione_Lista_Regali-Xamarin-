@@ -1,4 +1,5 @@
-﻿using Applicazione_Lista_Regali.Models;
+﻿using Applicazione_Lista_Regali.Cell;
+using Applicazione_Lista_Regali.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,9 +65,8 @@ namespace Applicazione_Lista_Regali
         {
             lista.Add(listaRegali);
             listView.ItemsSource = lista;
-            listView.ItemTemplate = new DataTemplate(typeof(TextCell));
-            listView.ItemTemplate.SetBinding(TextCell.TextProperty, "Nome");
-            listView.ItemTemplate.SetBinding(TextCell.DetailProperty, "Descrizione");
+            listView.RowHeight = 100;
+            listView.ItemTemplate = new DataTemplate(typeof(GiftListCell));
         }
     }
 }
