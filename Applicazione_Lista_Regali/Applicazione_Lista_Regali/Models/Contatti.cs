@@ -7,8 +7,8 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class Contatti
     {
-        private string Nome { get; set; }
-        private string Numero { get; set; }
+        public string Nome { get; set; }
+        public string Numero { get; set; }
         private List<Regalo> Regali { get; set; }
 
         public Contatti(string nome, string numero, List<Regalo> regali)
@@ -16,6 +16,10 @@ namespace Applicazione_Lista_Regali.Models
             this.Nome = nome;
             this.Numero = numero;
             this.Regali = regali;
+        }
+
+        public Contatti()
+        {
         }
     }
 }

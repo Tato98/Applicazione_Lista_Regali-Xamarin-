@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Applicazione_Lista_Regali.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace Applicazione_Lista_Regali
         public SelectedContactsPage()
         {
             InitializeComponent();
+            ShowContact();
+        }
+
+        private async void ShowContact()
+        {
+            var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync();
+            listContact.ItemsSource = ContactList;
         }
     }
 }
