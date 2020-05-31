@@ -22,12 +22,12 @@ namespace Applicazione_Lista_Regali
         {
             InitializeComponent();
             this.sendSelected = sendSelected;
-            ShowContact();
+            ShowContact(contatti);
         }
 
-        private async void ShowContact()
+        private async void ShowContact(List<Contatti> contatti)
         {
-            var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync();
+            var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync(GetContactsName(contatti));
             listContact.ItemsSource = ContactList;
             contactList = ContactList;
         }
@@ -49,6 +49,16 @@ namespace Applicazione_Lista_Regali
         public interface SendSelectedContact
         {
             void ReceiveContacts(List<Contatti> selectedContact);
+        }
+
+        private List<string> GetContactsName(List<Contatti> contatti)
+        {
+            List<string> contactName = new List<string>();
+            foreach(Contatti cnt in contatti)
+            {
+                contactName.Add(cnt.Nome);
+            }
+            return contactName;
         }
     }
 }

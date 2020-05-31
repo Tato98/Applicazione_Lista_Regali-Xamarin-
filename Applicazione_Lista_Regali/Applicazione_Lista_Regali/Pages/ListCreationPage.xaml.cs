@@ -83,7 +83,8 @@ namespace Applicazione_Lista_Regali
 
         public void ReceiveContacts(List<Contatti> selectedContact)
         {
-            contatti = selectedContact;
+            contatti.AddRange(selectedContact);
+            contactList.ItemsSource = contatti;
         }
 
         public interface SendData

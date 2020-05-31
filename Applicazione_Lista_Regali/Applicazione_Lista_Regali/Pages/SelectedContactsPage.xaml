@@ -19,7 +19,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell
-                            IsEnabled="{Binding Enabled}">
+                            IsEnabled="{Binding Enable}">
                             <StackLayout
                                 Orientation="Horizontal">
 
@@ -29,13 +29,15 @@
                                     <Label 
                                         Text="{Binding Nome}"
                                         FontSize="24"
-                                        FontAttributes="Bold">
+                                        FontAttributes="Bold"
+                                        IsEnabled="{Binding Enable}">
                                     </Label>
 
                                     <Label 
                                         Text="{Binding Numero}"
                                         FontSize="18"
-                                        FontAttributes="Italic">
+                                        FontAttributes="Italic"
+                                        IsEnabled="{Binding Enable}">
                                     </Label>
 
                                 </StackLayout>
@@ -48,7 +50,9 @@
                                         HorizontalOptions="End"
                                         VerticalOptions="End"
                                         Color="OrangeRed"
-                                        IsChecked="{Binding Selected}">
+                                        IsChecked="{Binding Selected}"
+                                        IsEnabled="{Binding Enable}"
+                                        IsVisible="{Binding Enable}">
                                     </CheckBox>
                                     
                                 </StackLayout>

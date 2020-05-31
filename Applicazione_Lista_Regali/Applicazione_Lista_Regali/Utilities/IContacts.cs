@@ -8,6 +8,6 @@ namespace Applicazione_Lista_Regali.Utilities
 {
     public interface IContacts
     {
-        Task<List<Contatti>> GetDeviceContactsAsync();
+        Task<List<Contatti>> GetDeviceContactsAsync(List<string> contactName);
     }
 }

@@ -52,6 +52,52 @@
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
 
+                <ListView
+                    x:Name="contactList"
+                    RowHeight="70">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                    Orientation="Horizontal">
+
+                                    <StackLayout
+                                        Padding="10">
+
+                                        <Label 
+                                            Text="{Binding Nome}"
+                                            FontSize="18"
+                                            FontAttributes="Bold" >
+                                        </Label>
+
+                                        <Label 
+                                            Text="{Binding Numero}"
+                                            FontSize="12"
+                                            FontAttributes="Italic">
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+
+                                        <Button
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Text="Cancella">
+                                        </Button>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                
             </StackLayout>
 
             <StackLayout

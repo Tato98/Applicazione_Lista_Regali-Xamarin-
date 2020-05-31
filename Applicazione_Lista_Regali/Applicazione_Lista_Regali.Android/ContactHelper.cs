@@ -19,7 +19,7 @@ namespace Applicazione_Lista_Regali.Droid
 {
     class ContactHelper : Utilities.IContacts
     {
-        public async Task<List<Contatti>> GetDeviceContactsAsync()
+        public async Task<List<Contatti>> GetDeviceContactsAsync(List<string> contactName)
         {
             List<Contatti> contactList = new List<Contatti>();
             var uri = ContactsContract.CommonDataKinds.Phone.ContentUri;
@@ -35,11 +35,30 @@ namespace Applicazione_Lista_Regali.Droid
             {
                 do
                 {
-                    contactList.Add(new Contatti()
+                    string name = cursor.GetString(cursor.GetColumnIndex(projection[1]));
+                    string number = cursor.GetString(cursor.GetColumnIndex(projection[2]));
+
+                    if (contactName.Contains(name))
                     {
-                        Nome = cursor.GetString(cursor.GetColumnIndex(projection[1])),
-                        Numero = cursor.GetString(cursor.GetColumnIndex(projection[2]))
-                    });
+                        contactList.Add(new Contatti()
+                        {
+                            Nome = name,
+                            Numero = number,
+                            Enable = false,
+                            Selected = false
+                        });
+                    }
+                    else
+                    {
+                        contactList.Add(new Contatti()
+                        {
+                            Nome = name,
+                            Numero = number,
+                            Enable = true,
+                            Selected = false
+                        });
+                    }
+                    
                 } while (cursor.MoveToNext());
             }
             return contactList;

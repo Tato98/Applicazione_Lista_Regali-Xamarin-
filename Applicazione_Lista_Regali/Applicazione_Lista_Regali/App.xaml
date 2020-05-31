@@ -5,7 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Applicazione_Lista_Regali.App">
+    
     <Application.Resources>
-
+        
+        <ResourceDictionary
+            Source="Theme/AppTheme.xaml">
+        </ResourceDictionary>
+        
     </Application.Resources>
+    
 </Application>
