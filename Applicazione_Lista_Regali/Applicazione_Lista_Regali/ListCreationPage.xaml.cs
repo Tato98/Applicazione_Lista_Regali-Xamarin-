@@ -12,10 +12,10 @@ using Xamarin.Forms.Xaml;
 namespace Applicazione_Lista_Regali
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListCreationPage : ContentPage
+    public partial class ListCreationPage : ContentPage, SelectedContactsPage.SendSelectedContact
     {
         List<String> nomi;
-        List<Contatti> contatti;
+        List<Contatti> contatti = new List<Contatti>();
         SendData sendData;
 
         public ListCreationPage(List<String> nomi, SendData sendData)
@@ -61,7 +61,7 @@ namespace Applicazione_Lista_Regali
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))
                 {
-                    ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), new List<Contatti>());
+                    ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), contatti);
                     sendData.ReceiveData(listaRegali);
                     Navigation.PopToRootAsync();
                 }
@@ -78,7 +78,12 @@ namespace Applicazione_Lista_Regali
 
         private void ButtonContacts_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new SelectedContactsPage());
+            Navigation.PushAsync(new SelectedContactsPage(contatti, this));
+        }
+
+        public void ReceiveContacts(List<Contatti> selectedContact)
+        {
+            contatti = selectedContact;
         }
 
         public interface SendData
