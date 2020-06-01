@@ -9,7 +9,6 @@ namespace Applicazione_Lista_Regali
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new MainPage());
         }
 
