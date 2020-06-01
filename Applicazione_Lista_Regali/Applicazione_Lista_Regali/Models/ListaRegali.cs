@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -10,9 +11,9 @@ namespace Applicazione_Lista_Regali.Models
         public string Nome { get; set; }
         public string Descrizione { get; set; }
         public string Budget { get; set; }
-        public List<Contatti> Contatti { get; set; }
+        public ObservableCollection<Contatti> Contatti { get; set; }
 
-        public ListaRegali(string nome, string descrizione, string budget, List<Contatti> contatti)
+        public ListaRegali(string nome, string descrizione, string budget, ObservableCollection<Contatti> contatti)
         {
             this.Nome = nome;
             this.Descrizione = descrizione;

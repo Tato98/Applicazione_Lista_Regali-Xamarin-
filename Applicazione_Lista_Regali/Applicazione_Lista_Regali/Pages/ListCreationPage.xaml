@@ -54,11 +54,12 @@
 
                 <ListView
                     x:Name="contactList"
-                    RowHeight="70">
+                    RowHeight="70"
+                    SelectionMode="None">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell >
                                 <StackLayout
                                     Orientation="Horizontal">
 
@@ -84,9 +85,11 @@
                                         VerticalOptions="FillAndExpand">
 
                                         <Button
+                                            CommandParameter="{Binding .}"
                                             HorizontalOptions="End"
                                             VerticalOptions="Center"
-                                            Text="Cancella">
+                                            Text="Cancella"
+                                            Clicked="Button_Clicked">
                                         </Button>
 
                                     </StackLayout>

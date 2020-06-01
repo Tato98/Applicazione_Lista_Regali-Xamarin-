@@ -2,6 +2,7 @@
 using Applicazione_Lista_Regali.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,16 +17,16 @@ namespace Applicazione_Lista_Regali
     {
         private List<Contatti> contactList = new List<Contatti>();
         private List<Contatti> selectedContact = new List<Contatti>();
-        private SendSelectedContact sendSelected;
+        private ISendSelectedContact sendSelected;
 
-        public SelectedContactsPage(List<Contatti> contatti, SendSelectedContact sendSelected)
+        public SelectedContactsPage(ObservableCollection<Contatti> contatti, ISendSelectedContact sendSelected)
         {
             InitializeComponent();
             this.sendSelected = sendSelected;
             ShowContact(contatti);
         }
 
-        private async void ShowContact(List<Contatti> contatti)
+        private async void ShowContact(ObservableCollection<Contatti> contatti)
         {
             var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync(GetContactsName(contatti));
             listContact.ItemsSource = ContactList;
@@ -46,12 +47,12 @@ namespace Applicazione_Lista_Regali
             Navigation.PopAsync();
         }
 
-        public interface SendSelectedContact
+        public interface ISendSelectedContact
         {
             void ReceiveContacts(List<Contatti> selectedContact);
         }
 
-        private List<string> GetContactsName(List<Contatti> contatti)
+        private List<string> GetContactsName(ObservableCollection<Contatti> contatti)
         {
             List<string> contactName = new List<string>();
             foreach(Contatti cnt in contatti)

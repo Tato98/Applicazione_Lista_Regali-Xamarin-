@@ -2,6 +2,7 @@
 using Applicazione_Lista_Regali.Utilities;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,13 @@ using Xamarin.Forms.Xaml;
 namespace Applicazione_Lista_Regali
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListCreationPage : ContentPage, SelectedContactsPage.SendSelectedContact
+    public partial class ListCreationPage : ContentPage, SelectedContactsPage.ISendSelectedContact
     {
         List<String> nomi;
-        List<Contatti> contatti = new List<Contatti>();
-        SendData sendData;
+        ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
+        ISendData sendData;
 
-        public ListCreationPage(List<String> nomi, SendData sendData)
+        public ListCreationPage(List<String> nomi, ISendData sendData)
         {
             InitializeComponent();
             this.nomi = nomi;
@@ -83,13 +84,23 @@ namespace Applicazione_Lista_Regali
 
         public void ReceiveContacts(List<Contatti> selectedContact)
         {
-            contatti.AddRange(selectedContact);
+            foreach(Contatti cnt in selectedContact)
+            {
+                contatti.Add(cnt);
+            }
             contactList.ItemsSource = contatti;
         }
 
-        public interface SendData
+        public interface ISendData
         {
             void ReceiveData(ListaRegali listaRegali);
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            var cnt = (Contatti)b.CommandParameter;
+            contatti.Remove(cnt);
         }
     }
 }

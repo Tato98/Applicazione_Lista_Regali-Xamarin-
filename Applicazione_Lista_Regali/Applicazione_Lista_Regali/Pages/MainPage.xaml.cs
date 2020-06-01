@@ -10,7 +10,7 @@ namespace Applicazione_Lista_Regali
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class MainPage : ContentPage, ListCreationPage.SendData
+    public partial class MainPage : ContentPage, ListCreationPage.ISendData
     {
         List<ListaRegali> lista = new List<ListaRegali>();
         Button button;
