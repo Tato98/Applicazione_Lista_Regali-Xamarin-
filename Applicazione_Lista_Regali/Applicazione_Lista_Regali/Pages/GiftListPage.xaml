@@ -4,34 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             Title="Contatti"
-             x:Class="Applicazione_Lista_Regali.SelectedContactsPage">
-
-    <ContentPage.ToolbarItems>
-
-        <ToolbarItem
-            Text="Fatto"
-            IconImageSource="tick.png"
-            Order="Primary"
-            Priority="0"
-            Clicked="ToolbarItem_Clicked">
-        </ToolbarItem>
-        
-    </ContentPage.ToolbarItems>
-    
+             x:Class="Applicazione_Lista_Regali.Pages.GiftListPage">
     <ContentPage.Content>
-        
         <StackLayout>
-
-            <ListView  
-                x:Name="listContact"
-                RowHeight="100"
+            <ListView
+                x:Name="list"
+                RowHeight="80"
                 SelectionMode="None">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell
-                            IsEnabled="{Binding Enable}">
+                        <ViewCell>
                             <StackLayout
                                 Orientation="Horizontal">
 
@@ -40,16 +23,14 @@
 
                                     <Label 
                                         Text="{Binding Nome}"
-                                        FontSize="28"
-                                        FontAttributes="Bold"
-                                        IsEnabled="{Binding Enable}">
+                                        FontSize="24"
+                                        FontAttributes="Bold">
                                     </Label>
 
                                     <Label 
                                         Text="{Binding Numero}"
-                                        FontSize="22"
-                                        FontAttributes="Italic"
-                                        IsEnabled="{Binding Enable}">
+                                        FontSize="18"
+                                        FontAttributes="Italic">
                                     </Label>
 
                                 </StackLayout>
@@ -57,16 +38,6 @@
                                 <StackLayout
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="FillAndExpand">
-
-                                    <CheckBox
-                                        HorizontalOptions="End"
-                                        VerticalOptions="End"
-                                        Color="OrangeRed"
-                                        IsChecked="{Binding Selected}"
-                                        IsEnabled="{Binding Enable}"
-                                        IsVisible="{Binding Enable}">
-                                    </CheckBox>
-
                                 </StackLayout>
 
                             </StackLayout>
@@ -74,9 +45,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </StackLayout>
-        
     </ContentPage.Content>
-    
 </ContentPage>

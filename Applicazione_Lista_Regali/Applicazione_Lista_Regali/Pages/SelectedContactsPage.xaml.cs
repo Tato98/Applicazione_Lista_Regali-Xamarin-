@@ -33,20 +33,6 @@ namespace Applicazione_Lista_Regali
             contactList = ContactList;
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
-            foreach(Contatti cnt in contactList)
-            {
-                if (cnt.Selected)
-                {
-                    selectedContact.Add(cnt);
-                }
-            }
-
-            sendSelected.ReceiveContacts(selectedContact);
-            Navigation.PopAsync();
-        }
-
         public interface ISendSelectedContact
         {
             void ReceiveContacts(List<Contatti> selectedContact);
@@ -60,6 +46,20 @@ namespace Applicazione_Lista_Regali
                 contactName.Add(cnt.Nome);
             }
             return contactName;
+        }
+
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            foreach (Contatti cnt in contactList)
+            {
+                if (cnt.Selected)
+                {
+                    selectedContact.Add(cnt);
+                }
+            }
+
+            sendSelected.ReceiveContacts(selectedContact);
+            Navigation.PopAsync();
         }
     }
 }
