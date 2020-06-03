@@ -37,7 +37,7 @@ namespace Applicazione_Lista_Regali
             decimal value;
 
             //controlli descrizione
-            if (descrizioneLista.Text != null)
+            if (descrizioneLista.Text != null && descrizioneLista.Text != "")
             {
                 descrizione = descrizioneLista.Text;
             }
@@ -47,7 +47,7 @@ namespace Applicazione_Lista_Regali
             }
 
             //controllo budget
-            if (budgetLista.Text != null)
+            if (budgetLista.Text != null && budgetLista.Text != "")
             {
                 value = decimal.Parse(budgetLista.Text);
             }
@@ -57,7 +57,7 @@ namespace Applicazione_Lista_Regali
             }
 
             //controlli nome lista
-            if (nomeLista.Text != null)
+            if (nomeLista.Text != null && nomeLista.Text != "")
             {
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))

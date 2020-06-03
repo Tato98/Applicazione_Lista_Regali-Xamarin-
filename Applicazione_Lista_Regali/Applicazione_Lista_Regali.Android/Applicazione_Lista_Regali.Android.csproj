@@ -97,7 +97,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Applicazione_Lista_Regali\Applicazione_Lista_Regali.csproj">
       <Project>{E6E90C75-E467-46A9-869E-A9411DCA5350}</Project>

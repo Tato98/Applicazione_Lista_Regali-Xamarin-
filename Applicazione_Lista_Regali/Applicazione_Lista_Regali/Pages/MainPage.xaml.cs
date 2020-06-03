@@ -1,6 +1,7 @@
 ﻿using Applicazione_Lista_Regali.Cell;
 using Applicazione_Lista_Regali.Models;
 using Applicazione_Lista_Regali.Pages;
+using Applicazione_Lista_Regali.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,16 +82,47 @@ namespace Applicazione_Lista_Regali
         public async void RemoveItem(ListaRegali listaRegali)
         {
             bool answer = await DisplayAlert("Attenzione!", "Sei sicuro di voler eliminare questa lista?", "Si", "No");
-            if(answer)
+            if (answer)
             {
                 lista.Remove(listaRegali);
-            }     
+            }
         }
 
         public async void ModifyItem(ListaRegali listaRegali)
         {
-            string result = await DisplayPromptAsync("Modifica", "Aggiungi un nome");
-            listaRegali.Nome = result;
+            string action = await DisplayActionSheet("Seleziona l'elemento da modificare", "Cancella", null, "Nome", "Descrizione");
+            if (action.Equals("Nome"))
+            {
+                string result = await DisplayPromptAsync("Modifica", "Aggiungi un nuovo nome", "Ok", "Annulla",initialValue: listaRegali.Nome, maxLength: 20, keyboard: Keyboard.Text);
+                if (result != "" && result != null)
+                {
+                    List<string> nameList = GetNameList();
+                    if (!nameList.Contains(result))
+                    {
+                        listaRegali.Nome = result;
+                    }
+                    else
+                    {
+                       DependencyService.Get<IMessage>().ShortAlert("Il nome inserito è già esistente");
+                    }
+                }
+                else if (result == "")
+                {
+                    DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessun nome");
+                }
+            }
+            else if (action.Equals("Descrizione"))
+            {
+                string result = await DisplayPromptAsync("Modifica", "Aggiungi una nuova descrizione", "Ok", "Annulla", initialValue: listaRegali.Descrizione, maxLength: 50, keyboard: Keyboard.Text);
+                if (result != "" && result != null)
+                {
+                    listaRegali.Descrizione = result;
+                }
+                else if (result == "")
+                {
+                    DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessuna descrizione");
+                }
+            }
         }
     }
 }
