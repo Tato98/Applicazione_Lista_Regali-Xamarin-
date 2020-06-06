@@ -21,7 +21,27 @@ namespace Applicazione_Lista_Regali.Pages
         {
             InitializeComponent();
             this.listaRegali = listaRegali;
-            list.ItemsSource = listaRegali.Contatti;
+            contatti = listaRegali.Contatti;
+            list.ItemsSource = contatti;
         }
+
+        private async void OnDeleteSwipeItem_Invoked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Attenzione!", "Sei sicuro di voler eliminare questo contatto?", "Si", "No");
+            if (answer)
+            {
+                var s = (SwipeItem)sender;
+                var cnt = (Contatti)s.CommandParameter;
+                contatti.Remove(cnt);
+            }
+            
+        }
+
+        /*private void OnDeleteSwipeItem_Clicked(object sender, EventArgs e)
+        {
+            var s = (SwipeItem)sender;
+            var cnt = (Contatti)s.CommandParameter;
+            contatti.Remove(cnt);
+        }*/
     }
 }

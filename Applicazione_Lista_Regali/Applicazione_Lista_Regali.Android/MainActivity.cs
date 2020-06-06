@@ -7,6 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace Applicazione_Lista_Regali.Droid
 {
@@ -19,6 +20,8 @@ namespace Applicazione_Lista_Regali.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            Forms.SetFlags("SwipeView_Experimental");
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

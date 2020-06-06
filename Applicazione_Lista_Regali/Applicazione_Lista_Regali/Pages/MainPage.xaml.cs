@@ -27,7 +27,7 @@ namespace Applicazione_Lista_Regali
             listView = new ListView
             {
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand,
+                VerticalOptions = LayoutOptions.StartAndExpand
             };
             listView.ItemSelected += ListView_ItemSelected;
 
@@ -52,7 +52,9 @@ namespace Applicazione_Lista_Regali
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            if (e.SelectedItem == null) return;
             Navigation.PushAsync(new GiftListPage((ListaRegali)e.SelectedItem));
+            ((ListView)sender).SelectedItem = null;
         }
 
         private void ButtonAdd_Clicked(object sender, EventArgs e)

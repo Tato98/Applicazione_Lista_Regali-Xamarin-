@@ -22,6 +22,7 @@ namespace Applicazione_Lista_Regali.Droid
         public async Task<List<Contatti>> GetDeviceContactsAsync(List<string> contactName)
         {
             List<Contatti> contactList = new List<Contatti>();
+
             var uri = ContactsContract.CommonDataKinds.Phone.ContentUri;
             string[] projection =
             {

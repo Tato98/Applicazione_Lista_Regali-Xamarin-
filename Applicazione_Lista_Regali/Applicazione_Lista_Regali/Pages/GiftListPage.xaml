@@ -15,32 +15,53 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout
-                                Orientation="Horizontal">
+
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems
+                                        SwipeBehaviorOnInvoked="Close">
+                                        <SwipeItem
+                                            Text="Aggiungi"
+                                            BackgroundColor="DarkGoldenrod"/>
+                                        <SwipeItem
+                                            CommandParameter="{Binding .}"
+                                            Text="Delete"
+                                            BackgroundColor="Red"
+                                            Invoked="OnDeleteSwipeItem_Invoked"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                
+                                <!-- Content -->
 
                                 <StackLayout
-                                    Padding="10">
+                                    Orientation="Horizontal">
 
-                                    <Label 
-                                        Text="{Binding Nome}"
-                                        FontSize="24"
-                                        FontAttributes="Bold">
-                                    </Label>
+                                    <StackLayout
+                                        Padding="10">
 
-                                    <Label 
-                                        Text="{Binding Numero}"
-                                        FontSize="18"
-                                        FontAttributes="Italic">
-                                    </Label>
+                                        <Label 
+                                            Text="{Binding Nome}"
+                                            FontSize="24"
+                                            FontAttributes="Bold">
+                                        </Label>
+
+                                        <Label 
+                                            Text="{Binding Numero}"
+                                            FontSize="18"
+                                            FontAttributes="Italic">
+                                        </Label>
+
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                    </StackLayout>
 
                                 </StackLayout>
 
-                                <StackLayout
-                                    HorizontalOptions="FillAndExpand"
-                                    VerticalOptions="FillAndExpand">
-                                </StackLayout>
-
-                            </StackLayout>
+                            </SwipeView>
+  
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
