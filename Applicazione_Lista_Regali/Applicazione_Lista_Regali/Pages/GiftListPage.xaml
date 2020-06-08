@@ -6,66 +6,144 @@
              mc:Ignorable="d"
              x:Class="Applicazione_Lista_Regali.Pages.GiftListPage">
     <ContentPage.Content>
-        <StackLayout>
-            <ListView
-                x:Name="list"
-                RowHeight="80"
-                SelectionMode="None">
+        
+        <AbsoluteLayout
+            Padding="0"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+            <StackLayout
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All">
 
-                            <SwipeView>
-                                <SwipeView.LeftItems>
-                                    <SwipeItems
-                                        SwipeBehaviorOnInvoked="Close">
-                                        <SwipeItem
-                                            Text="Aggiungi"
-                                            BackgroundColor="DarkGoldenrod"/>
-                                        <SwipeItem
-                                            CommandParameter="{Binding .}"
-                                            Text="Delete"
-                                            BackgroundColor="Red"
-                                            Invoked="OnDeleteSwipeItem_Invoked"/>
-                                    </SwipeItems>
-                                </SwipeView.LeftItems>
-                                
-                                <!-- Content -->
+                <ListView
+                    x:Name="list"
+                    RowHeight="80"
+                    SelectionMode="None">
 
-                                <StackLayout
-                                    Orientation="Horizontal">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                           <ViewCell>
+
+                                <SwipeView>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems
+                                            SwipeBehaviorOnInvoked="Close">
+                                            <SwipeItem
+                                                CommandParameter="{Binding .}"
+                                                Text="Aggiungi"
+                                                BackgroundColor="DarkGoldenrod"
+                                                Invoked="AddGiftSwipeItem_Invoked"/>
+                                            <SwipeItem
+                                                CommandParameter="{Binding .}"
+                                                Text="Delete"
+                                                BackgroundColor="Red"
+                                                Invoked="OnDeleteSwipeItem_Invoked"/>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+
+                                    <!-- Content -->
 
                                     <StackLayout
-                                        Padding="10">
+                                        Orientation="Horizontal">
 
-                                        <Label 
-                                            Text="{Binding Nome}"
-                                            FontSize="24"
-                                            FontAttributes="Bold">
-                                        </Label>
+                                        <StackLayout
+                                            Padding="10">
 
-                                        <Label 
-                                            Text="{Binding Numero}"
-                                            FontSize="18"
-                                            FontAttributes="Italic">
-                                        </Label>
+                                            <Label 
+                                                Text="{Binding Nome}"
+                                                FontSize="24"
+                                                FontAttributes="Bold">
+                                            </Label>
+
+                                            <Label 
+                                                Text="{Binding Numero}"
+                                                FontSize="18"
+                                                FontAttributes="Italic">
+                                            </Label>
+
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            HorizontalOptions="FillAndExpand"
+                                            VerticalOptions="FillAndExpand">
+                                        </StackLayout>
 
                                     </StackLayout>
 
-                                    <StackLayout
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand">
-                                    </StackLayout>
+                                </SwipeView>
 
-                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
 
-                            </SwipeView>
-  
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
+            <ContentView
+                x:Name="popupLoginView"
+                BackgroundColor="#C0808080"
+                Padding="10, 0"
+                IsVisible="false"
+                AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center">
+
+                    <StackLayout
+                        Orientation="Vertical"
+                        HeightRequest="200"
+                        WidthRequest="300"
+                        BackgroundColor="White">
+
+                        <Entry
+                            x:Name="nomeRegalo"
+                            Margin="20,20,20,10"
+                            Placeholder="Nome"
+                            Keyboard="Text"
+                            MaxLength="20">
+                        </Entry>
+
+                        <Entry
+                            x:Name="prezzoRegalo"
+                            Margin="20,0,20,0"
+                            Placeholder="Prezzo"
+                            Keyboard="Numeric"
+                            MaxLength="10">
+                        </Entry>
+
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Margin="20,0,20,0">
+
+                            <Button
+                                HorizontalOptions="StartAndExpand"
+                                Text="Annulla"
+                                TextColor="White"
+                                BackgroundColor="OrangeRed"
+                                CornerRadius="10"
+                                Clicked="CancelButton_Clicked">
+                            </Button>
+
+                            <Button
+                                HorizontalOptions="End"
+                                Text="Aggiungi"
+                                TextColor="White"
+                                BackgroundColor="OrangeRed"
+                                CornerRadius="10"
+                                Clicked="AddGiftButton_Clicked">
+                            </Button>
+
+                        </StackLayout>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ContentView>
+
+        </AbsoluteLayout>
     </ContentPage.Content>
+
 </ContentPage>

@@ -45,6 +45,7 @@ namespace Applicazione_Lista_Regali.Droid
                         {
                             Nome = name,
                             Numero = number,
+                            Regali = new List<Regalo>(),
                             Enable = false,
                             Selected = false
                         });
@@ -55,6 +56,7 @@ namespace Applicazione_Lista_Regali.Droid
                         {
                             Nome = name,
                             Numero = number,
+                            Regali = new List<Regalo>(),
                             Enable = true,
                             Selected = false
                         });
