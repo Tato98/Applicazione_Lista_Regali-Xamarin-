@@ -41,14 +41,14 @@ namespace Applicazione_Lista_Regali.Pages
 
         private async void AddGiftSwipeItem_Invoked(object sender, EventArgs e)
         {
-            popupLoginView.IsVisible = true;
+            popupAddGiftView.IsVisible = true;
             var s = (SwipeItem)sender;
             cnt = (Contatti)s.CommandParameter;
         }
 
         private void CancelButton_Clicked(object sender, EventArgs e)
         {
-            popupLoginView.IsVisible = false;
+            popupAddGiftView.IsVisible = false;
             nomeRegalo.Text = null;
             prezzoRegalo.Text = null;
         }
@@ -58,7 +58,7 @@ namespace Applicazione_Lista_Regali.Pages
             if((nomeRegalo.Text != null && nomeRegalo.Text != "") && (prezzoRegalo.Text != null && prezzoRegalo.Text != ""))
             {
                 cnt.Regali.Add(new Regalo(nomeRegalo.Text, prezzoRegalo.Text));
-                popupLoginView.IsVisible = false;
+                popupAddGiftView.IsVisible = false;
                 nomeRegalo.Text = null;
                 prezzoRegalo.Text = null;
             }
@@ -66,6 +66,34 @@ namespace Applicazione_Lista_Regali.Pages
             {
                 DependencyService.Get<IMessage>().ShortAlert("Inserisci tutti i campi richiesti");
             }
+        }
+
+        private void ShowGiftListButton_Clicked(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            var cnt = (Contatti)b.CommandParameter;
+
+            HideOrShowGiftList(cnt);
+        }
+
+        public void HideOrShowGiftList(Contatti cnt)
+        {
+            if (cnt.Visible)
+            {
+                cnt.Visible = false;
+            }
+            else
+            {
+                cnt.Visible = true;
+            }
+            UpdateContacts(cnt);
+        }
+
+        public void UpdateContacts(Contatti cnt)
+        {
+            var index = contatti.IndexOf(cnt);
+            contatti.Remove(cnt);
+            contatti.Insert(index, cnt);
         }
     }
 }

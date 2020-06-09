@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,9 +46,10 @@ namespace Applicazione_Lista_Regali.Droid
                         {
                             Nome = name,
                             Numero = number,
-                            Regali = new List<Regalo>(),
+                            Regali = new ObservableCollection<Regalo>(),
                             Enable = false,
-                            Selected = false
+                            Selected = false,
+                            Visible = false
                         });
                     }
                     else
@@ -56,9 +58,10 @@ namespace Applicazione_Lista_Regali.Droid
                         {
                             Nome = name,
                             Numero = number,
-                            Regali = new List<Regalo>(),
+                            Regali = new ObservableCollection<Regalo>(),
                             Enable = true,
-                            Selected = false
+                            Selected = false,
+                            Visible = false
                         });
                     }
                     
