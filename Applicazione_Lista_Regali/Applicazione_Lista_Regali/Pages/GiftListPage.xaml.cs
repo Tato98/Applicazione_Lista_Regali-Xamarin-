@@ -57,7 +57,11 @@ namespace Applicazione_Lista_Regali.Pages
         {
             if((nomeRegalo.Text != null && nomeRegalo.Text != "") && (prezzoRegalo.Text != null && prezzoRegalo.Text != ""))
             {
-                cnt.Regali.Add(new Regalo(nomeRegalo.Text, prezzoRegalo.Text));
+                decimal value = decimal.Parse(prezzoRegalo.Text);
+                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##")));
+                cnt.TotPrice();
+                cnt.SizeGiftList();
+                UpdateContacts(cnt);
                 popupAddGiftView.IsVisible = false;
                 nomeRegalo.Text = null;
                 prezzoRegalo.Text = null;

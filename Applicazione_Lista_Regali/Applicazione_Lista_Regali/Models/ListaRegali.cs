@@ -14,7 +14,7 @@ namespace Applicazione_Lista_Regali.Models
         private string nome;
         private string descrizione;
 
-        public string Nome 
+        public string Nome
         {
             get
             {
@@ -63,7 +63,7 @@ namespace Applicazione_Lista_Regali.Models
         {
             this.Nome = nome;
             this.Descrizione = descrizione;
-            this.Budget = budget;
+            this.Budget = budget + " €";
             this.Contatti = contatti;
         }
     }

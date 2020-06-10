@@ -61,6 +61,7 @@
                         <DataTemplate>
                             <ViewCell >
                                 <StackLayout
+                                    BackgroundColor="#FFE6DE"
                                     Orientation="Horizontal">
 
                                     <StackLayout

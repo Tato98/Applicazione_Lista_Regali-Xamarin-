@@ -49,7 +49,9 @@ namespace Applicazione_Lista_Regali.Droid
                             Regali = new ObservableCollection<Regalo>(),
                             Enable = false,
                             Selected = false,
-                            Visible = false
+                            Visible = false,
+                            NumeroRegali = 0,
+                            TotPrezzo = "0.00 €"
                         });
                     }
                     else
@@ -61,7 +63,9 @@ namespace Applicazione_Lista_Regali.Droid
                             Regali = new ObservableCollection<Regalo>(),
                             Enable = true,
                             Selected = false,
-                            Visible = false
+                            Visible = false,
+                            NumeroRegali = 0,
+                            TotPrezzo = "0.00 €"
                         });
                     }
                     

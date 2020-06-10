@@ -6,13 +6,13 @@ namespace Applicazione_Lista_Regali.Models
 {
     public class Regalo
     {
-        private string Nome { get; set; }
-        private string Prezzo { get; set; }
+        public string Nome { get; set; }
+        public string Prezzo { get; set; }
 
         public Regalo(string nome, string prezzo)
         {
             this.Nome = nome;
-            this.Prezzo = prezzo;
+            this.Prezzo = prezzo + " €";
         }
     }
 }

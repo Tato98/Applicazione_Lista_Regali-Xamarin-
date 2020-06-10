@@ -33,7 +33,7 @@
                                             <SwipeItem
                                                 CommandParameter="{Binding .}"
                                                 Text="Aggiungi"
-                                                BackgroundColor="DarkGoldenrod"
+                                                BackgroundColor="#FFC107"
                                                 Invoked="AddGiftSwipeItem_Invoked"/>
                                             <SwipeItem
                                                 CommandParameter="{Binding .}"
@@ -45,7 +45,8 @@
 
                                     <!-- Content -->
 
-                                    <StackLayout>
+                                    <StackLayout
+                                        BackgroundColor="#FFE6DE">
                                         
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -90,9 +91,15 @@
                                                     Orientation="Horizontal">
 
                                                     <Label
-                                                        Text="Numero regali: "
+                                                        Text="N. Regali: "
                                                         FontSize="15"
                                                         FontAttributes="Bold">
+                                                    </Label>
+
+                                                    <Label
+                                                        HorizontalOptions="Start"
+                                                        VerticalOptions="Start"
+                                                        Text="{Binding NumeroRegali}">
                                                     </Label>
 
                                                 </StackLayout>
@@ -101,9 +108,15 @@
                                                     Orientation="Horizontal">
 
                                                     <Label
-                                                        Text="Prezzo totale: "
+                                                        Text="Tot. : "
                                                         FontSize="15"
                                                         FontAttributes="Bold">
+                                                    </Label>
+
+                                                    <Label
+                                                        HorizontalOptions="Start"
+                                                        VerticalOptions="Start"
+                                                        Text="{Binding TotPrezzo}">
                                                     </Label>
 
                                                 </StackLayout>
@@ -119,8 +132,9 @@
                                             IsVisible="{Binding Visible}">
 
                                             <ListView
+                                                BackgroundColor="White"
                                                 x:Name="giftList"
-                                                RowHeight="50"
+                                                RowHeight="65"
                                                 ItemsSource="{Binding Regali}"
                                                 SelectionMode="None">
 
@@ -132,6 +146,7 @@
                                                                 Orientation="Horizontal">
 
                                                                 <StackLayout
+                                                                    Padding="5"
                                                                     HorizontalOptions="StartAndExpand"
                                                                     VerticalOptions="StartAndExpand">
                                                                     <Label
