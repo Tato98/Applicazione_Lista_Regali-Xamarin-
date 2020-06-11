@@ -36,7 +36,6 @@ namespace Applicazione_Lista_Regali.Pages
                 var cnt = (Contatti)s.CommandParameter;
                 contatti.Remove(cnt);
             }
-            
         }
 
         private async void AddGiftSwipeItem_Invoked(object sender, EventArgs e)
@@ -58,7 +57,7 @@ namespace Applicazione_Lista_Regali.Pages
             if((nomeRegalo.Text != null && nomeRegalo.Text != "") && (prezzoRegalo.Text != null && prezzoRegalo.Text != ""))
             {
                 decimal value = decimal.Parse(prezzoRegalo.Text);
-                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##")));
+                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##"), cnt.Numero));
                 cnt.TotPrice();
                 cnt.SizeGiftList();
                 UpdateContacts(cnt);
@@ -98,6 +97,77 @@ namespace Applicazione_Lista_Regali.Pages
             var index = contatti.IndexOf(cnt);
             contatti.Remove(cnt);
             contatti.Insert(index, cnt);
+        }
+
+        private async void ModifyGiftButton_Clicked(object sender, EventArgs e)
+        {
+            var b = (Button)sender;
+            var gift = (Regalo)b.CommandParameter;
+            var cnt = PickContactByNumber(gift.NumeroContatto);
+
+            string action = await DisplayActionSheet("Seleziona l'elemento da modificare", "Cancella", null, "Nome", "Prezzo");
+            if (action.Equals("Nome"))
+            {
+                string result = await DisplayPromptAsync("Modifica", "Aggiungi un nuovo nome", "Ok", "Annulla", initialValue: gift.Nome, maxLength: 20, keyboard: Keyboard.Text);
+                if (result != "" && result != null)
+                {
+                    gift.Nome = result;
+                    UpdateContacts(cnt);
+                }
+                else if (result == "")
+                {
+                    DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessun nome");
+                }
+            }
+            else if (action.Equals("Prezzo"))
+            {
+                string result = await DisplayPromptAsync("Modifica", "Aggiungi un nuovo prezzo", "Ok", "Annulla", initialValue: GetOnlyDecimal(gift.Prezzo), maxLength: 10, keyboard: Keyboard.Numeric);
+                if (result != "" && result != null)
+                {
+                    decimal value = Decimal.Parse(result);
+                    gift.Prezzo = value.ToString("0.##") + " €";
+                    cnt.TotPrice();
+                    cnt.SizeGiftList();
+                    UpdateContacts(cnt);
+                }
+                else if (result == "")
+                {
+                    DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessun prezzo");
+                }
+            }
+        }
+
+        private async void DeleteGiftButton_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Attenzione!", "Sei sicuro di voler eliminare questo regalo?", "Si", "No");
+            if (answer)
+            {
+                var b = (Button)sender;
+                var gift = (Regalo)b.CommandParameter;
+                var cnt = PickContactByNumber(gift.NumeroContatto);
+                cnt.Regali.Remove(gift);
+                cnt.TotPrice();
+                cnt.SizeGiftList();
+                UpdateContacts(cnt);
+            }
+        }
+
+        private Contatti PickContactByNumber(string number)
+        {
+            Contatti contact = new Contatti();
+            foreach(Contatti cnt in contatti)
+            {
+                if(cnt.Numero == number)
+                {
+                    contact = cnt;
+                }
+            }
+            return contact;
+        }
+
+        public string GetOnlyDecimal(string prezzo)
+        {
+            return prezzo.Remove(prezzo.Length - 2);
         }
     }
 }

@@ -162,13 +162,22 @@
                                                                     </Label>
                                                                 </StackLayout>
 
-                                                                <Button
-                                                                    Text="Modifica">
-                                                                </Button>
+                                                                <StackLayout
+                                                                    Orientation="Horizontal">
 
-                                                                <Button
-                                                                    Text="Cancella">
-                                                                </Button>
+                                                                    <Button
+                                                                        Text="Modifica"
+                                                                        CommandParameter="{Binding .}"
+                                                                        Clicked="ModifyGiftButton_Clicked">
+                                                                    </Button>
+
+                                                                    <Button
+                                                                        Text="Cancella"
+                                                                        CommandParameter="{Binding .}"
+                                                                        Clicked="DeleteGiftButton_Clicked">
+                                                                    </Button>
+
+                                                                </StackLayout>
 
                                                             </StackLayout>
                                                             

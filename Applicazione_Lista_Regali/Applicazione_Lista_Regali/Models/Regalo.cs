@@ -8,11 +8,13 @@ namespace Applicazione_Lista_Regali.Models
     {
         public string Nome { get; set; }
         public string Prezzo { get; set; }
+        public string NumeroContatto { get; set; }
 
-        public Regalo(string nome, string prezzo)
+        public Regalo(string nome, string prezzo, string numeroContatto)
         {
             this.Nome = nome;
             this.Prezzo = prezzo + " €";
+            this.NumeroContatto = numeroContatto;
         }
     }
 }
