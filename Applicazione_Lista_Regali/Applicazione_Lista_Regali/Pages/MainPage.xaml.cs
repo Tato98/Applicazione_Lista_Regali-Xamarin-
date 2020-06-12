@@ -2,6 +2,7 @@
 using Applicazione_Lista_Regali.Models;
 using Applicazione_Lista_Regali.Pages;
 using Applicazione_Lista_Regali.Utilities;
+using DK.SlidingPanel.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

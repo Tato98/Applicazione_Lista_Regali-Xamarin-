@@ -4,23 +4,28 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Applicazione_Lista_Regali.Pages.GiftListPage">
+             x:Class="Applicazione_Lista_Regali.Pages.GiftListPage"
+             x:Name="contentPage">
 
     <ContentPage.Content>
-        
+
         <AbsoluteLayout
             Padding="0"
             HorizontalOptions="FillAndExpand"
-            VerticalOptions="FillAndExpand">
+            VerticalOptions="FillAndExpand"
+            AbsoluteLayout.LayoutBounds="0,1,1,1">
 
             <StackLayout
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                 AbsoluteLayout.LayoutFlags="All">
 
+                <!--Lista dei contatti scelti-->
+
                 <ListView
                     x:Name="list"
                     HasUnevenRows="True"
-                    SelectionMode="None">
+                    SelectionMode="None"
+                    SeparatorColor="Black">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -47,7 +52,7 @@
 
                                     <StackLayout
                                         BackgroundColor="#FFE6DE">
-                                        
+
                                         <StackLayout
                                             Orientation="Horizontal">
 
@@ -131,12 +136,16 @@
                                             VerticalOptions="StartAndExpand"
                                             IsVisible="{Binding Visible}">
 
+                                            <!--Lista interna dei regali-->
+
                                             <ListView
                                                 BackgroundColor="White"
                                                 x:Name="giftList"
                                                 RowHeight="65"
                                                 ItemsSource="{Binding Regali}"
-                                                SelectionMode="None">
+                                                SelectionMode="None"
+                                                SeparatorColor="Black"
+                                                SeparatorVisibility="Default">
 
                                                 <ListView.ItemTemplate>
                                                     <DataTemplate>
@@ -180,15 +189,15 @@
                                                                 </StackLayout>
 
                                                             </StackLayout>
-                                                            
+
                                                         </ViewCell>
                                                     </DataTemplate>
                                                 </ListView.ItemTemplate>
-                                                
+
                                             </ListView>
-                                            
+
                                         </StackLayout>
-                                        
+
                                     </StackLayout>
 
                                 </SwipeView>
@@ -198,6 +207,8 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
+
+            <!--Popup per aggiungere regali-->
 
             <ContentView
                 x:Name="popupAddGiftView"
@@ -263,7 +274,72 @@
 
             </ContentView>
 
+            <StackLayout
+                x:Name="bottomDrawer"
+                BackgroundColor="#8E2A0B"
+                AbsoluteLayout.LayoutBounds="0.00,1.00,1.00,0.08"
+                AbsoluteLayout.LayoutFlags="All">
+
+                <StackLayout.GestureRecognizers>
+                    
+                    <PanGestureRecognizer
+                        PanUpdated="PanGestureHandler">
+                    </PanGestureRecognizer>
+
+                </StackLayout.GestureRecognizers>
+
+                <!--Panel's content-->
+                <StackLayout
+                    Padding="10"
+                    BackgroundColor="OrangeRed">
+
+                    <Label
+                        Text="BUDGET"
+                        TextColor="White"
+                        FontSize="24"
+                        FontAttributes="Bold">
+                    </Label>
+
+                </StackLayout>
+
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand"
+                    Padding="10">
+
+                    <Label
+                        Text="Hai ancora a disposizione:"
+                        FontSize="24"
+                        FontAttributes="Bold"
+                        TextColor="White">
+                    </Label>
+
+                    <Label
+                        x:Name="budget"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        TextColor="White"
+                        FontSize="30"
+                        FontAttributes="Bold">
+                    </Label>
+
+                    <Button
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="EndAndExpand"
+                        Text="Modifica Budget"
+                        FontAttributes="Bold"
+                        TextColor="OrangeRed"
+                        BackgroundColor="White"
+                        CornerRadius="20"
+                        Clicked="ModifyBudgetButton_Clicked">
+                    </Button>
+                        
+                </StackLayout>
+
+            </StackLayout>
+
         </AbsoluteLayout>
+        
     </ContentPage.Content>
 
 </ContentPage>

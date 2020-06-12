@@ -19,9 +19,16 @@ namespace Applicazione_Lista_Regali.Pages
         public ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
         public Contatti cnt = new Contatti();
 
+        double? layoutHeight;
+        double layoutBoundsHeight;
+        int direction;
+        const double layoutPropHeightMax = 0.5;
+        const double layoutPropHeightMin = 0.08;
+
         public GiftListPage(ListaRegali listaRegali)
         {
             InitializeComponent();
+            contentPage.Title = listaRegali.Nome;
             this.listaRegali = listaRegali;
             contatti = listaRegali.Contatti;
             list.ItemsSource = contatti;
@@ -168,6 +175,51 @@ namespace Applicazione_Lista_Regali.Pages
         public string GetOnlyDecimal(string prezzo)
         {
             return prezzo.Remove(prezzo.Length - 2);
+        }
+
+        private void PanGestureHandler(object sender, PanUpdatedEventArgs e)
+        {
+            layoutHeight = layoutHeight ?? ((sender as StackLayout).Parent as AbsoluteLayout).Height;
+            switch (e.StatusType)
+            {
+                case GestureStatus.Started:
+                    layoutBoundsHeight = AbsoluteLayout.GetLayoutBounds(sender as StackLayout).Height;
+                    break;
+
+                case GestureStatus.Running:
+                    direction = e.TotalY < 0 ? 1 : -1;
+                    //var yProp = layoutBoundsHeight + (-e.TotalY / (double)layoutHeight);
+                    //if ((yProp > layoutPropHeightMin) & (yProp < layoutPropHeightMax))
+                        //AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.5, 1.00, 0.9, yProp));
+                    break;
+
+                case GestureStatus.Completed:
+                    if (direction > 0) // snap to max/min, you could use an animation....
+                    {
+                        AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.00, 1.00, 1.00, layoutPropHeightMax));
+                        budget.Text = listaRegali.Budget;
+                    }
+                    else
+                    {
+                        AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.00, 1.00, 1.00, layoutPropHeightMin));
+                    }
+                    break;
+            }
+        }
+
+        private async void ModifyBudgetButton_Clicked(object sender, EventArgs e)
+        {
+            string result = await DisplayPromptAsync("Modifica", "Aggiungi un nuovo budget", "Ok", "Annulla", initialValue: GetOnlyDecimal(listaRegali.Budget), maxLength: 10, keyboard: Keyboard.Numeric);
+            if (result != "" && result != null)
+            {
+                decimal value = Decimal.Parse(result);
+                listaRegali.Budget = value.ToString("0.##") + " €";
+                budget.Text = listaRegali.Budget;
+            }
+            else if (result == "")
+            {
+                DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessun budget");
+            }
         }
     }
 }
