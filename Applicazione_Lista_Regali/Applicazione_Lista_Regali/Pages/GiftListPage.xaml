@@ -308,6 +308,7 @@
                     Padding="10">
 
                     <Label
+                        x:Name="textBudget"
                         Text="Hai ancora a disposizione:"
                         FontSize="24"
                         FontAttributes="Bold"
@@ -315,7 +316,7 @@
                     </Label>
 
                     <Label
-                        x:Name="budget"
+                        x:Name="budgetRimasto"
                         HorizontalOptions="Center"
                         VerticalOptions="CenterAndExpand"
                         TextColor="White"

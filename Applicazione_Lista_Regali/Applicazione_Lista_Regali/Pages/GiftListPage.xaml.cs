@@ -19,6 +19,8 @@ namespace Applicazione_Lista_Regali.Pages
         public ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
         public Contatti cnt = new Contatti();
 
+        private bool flag1, flag2;
+
         double? layoutHeight;
         double layoutBoundsHeight;
         int direction;
@@ -28,10 +30,13 @@ namespace Applicazione_Lista_Regali.Pages
         public GiftListPage(ListaRegali listaRegali)
         {
             InitializeComponent();
+            flag1 = true;
+            flag2 = true;
             contentPage.Title = listaRegali.Nome;
             this.listaRegali = listaRegali;
             contatti = listaRegali.Contatti;
             list.ItemsSource = contatti;
+            ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
         }
 
         private async void OnDeleteSwipeItem_Invoked(object sender, EventArgs e)
@@ -42,6 +47,7 @@ namespace Applicazione_Lista_Regali.Pages
                 var s = (SwipeItem)sender;
                 var cnt = (Contatti)s.CommandParameter;
                 contatti.Remove(cnt);
+                ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
             }
         }
 
@@ -68,6 +74,7 @@ namespace Applicazione_Lista_Regali.Pages
                 cnt.TotPrice();
                 cnt.SizeGiftList();
                 UpdateContacts(cnt);
+                ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
                 popupAddGiftView.IsVisible = false;
                 nomeRegalo.Text = null;
                 prezzoRegalo.Text = null;
@@ -136,6 +143,7 @@ namespace Applicazione_Lista_Regali.Pages
                     cnt.TotPrice();
                     cnt.SizeGiftList();
                     UpdateContacts(cnt);
+                    ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
                 }
                 else if (result == "")
                 {
@@ -156,6 +164,7 @@ namespace Applicazione_Lista_Regali.Pages
                 cnt.TotPrice();
                 cnt.SizeGiftList();
                 UpdateContacts(cnt);
+                ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
             }
         }
 
@@ -190,14 +199,15 @@ namespace Applicazione_Lista_Regali.Pages
                     direction = e.TotalY < 0 ? 1 : -1;
                     //var yProp = layoutBoundsHeight + (-e.TotalY / (double)layoutHeight);
                     //if ((yProp > layoutPropHeightMin) & (yProp < layoutPropHeightMax))
+                    //{
                         //AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.5, 1.00, 0.9, yProp));
+                    //}
                     break;
 
                 case GestureStatus.Completed:
-                    if (direction > 0) // snap to max/min, you could use an animation....
+                    if (direction > 0)
                     {
                         AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.00, 1.00, 1.00, layoutPropHeightMax));
-                        budget.Text = listaRegali.Budget;
                     }
                     else
                     {
@@ -207,6 +217,7 @@ namespace Applicazione_Lista_Regali.Pages
             }
         }
 
+        //Metodo che gestisce la modifica del budget una volta cliccato il relativo bottone
         private async void ModifyBudgetButton_Clicked(object sender, EventArgs e)
         {
             string result = await DisplayPromptAsync("Modifica", "Aggiungi un nuovo budget", "Ok", "Annulla", initialValue: GetOnlyDecimal(listaRegali.Budget), maxLength: 10, keyboard: Keyboard.Numeric);
@@ -214,11 +225,64 @@ namespace Applicazione_Lista_Regali.Pages
             {
                 decimal value = Decimal.Parse(result);
                 listaRegali.Budget = value.ToString("0.##") + " €";
-                budget.Text = listaRegali.Budget;
+                ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
             }
             else if (result == "")
             {
                 DependencyService.Get<IMessage>().ShortAlert("Non hai inserito nessun budget");
+            }
+        }
+
+        //Serve a calcolare il totale dei soldi spesi per la lista
+        private string GetTotSpent()
+        {
+            decimal tot = 0;
+            foreach(Contatti cnt in contatti)
+            {
+                tot += Decimal.Parse(GetOnlyDecimal(cnt.TotPrezzo));
+            }
+            return tot.ToString("0.##");
+        }
+
+        //Mostra degli alert in relazione al totale che si è speso e modificail valore del budget rimasto nel pannello in basso
+        private void ControlRemainingBudget(decimal value)
+        {
+            decimal budget = Decimal.Parse(GetOnlyDecimal(listaRegali.Budget));
+            decimal totSpent = Decimal.Parse(GetTotSpent());
+            if (flag1 && totSpent > (budget * 50/100) && totSpent <= (budget * 90/100))
+            {
+                DependencyService.Get<IMessage>().LongAlert("Hai superato la metà del budget");
+                flag1 = false;
+                flag2 = true;
+                textBudget.Text = "Hai ancora a disposizione:";
+                budgetRimasto.TextColor = Color.White;
+                budgetRimasto.Text = value.ToString("0.##") + " €";
+            }
+            else if(flag2 && totSpent > (budget * 90/100) && totSpent < budget)
+            {
+                DependencyService.Get<IMessage>().LongAlert("Hai quasi esaurito il tuo budget");
+                flag1 = true;
+                flag2 = false;
+                textBudget.Text = "Hai ancora a disposizione:";
+                budgetRimasto.TextColor = Color.White;
+                budgetRimasto.Text = value.ToString("0.##") + " €";
+            }
+            else if(totSpent > budget)
+            {
+                DisplayAlert("Attenzione!", "Hai superato il budget a disposizione. Puoi controllare il tuo budget nella sezione in basso.", "OK");
+                flag1 = true;
+                flag2 = true;
+                textBudget.Text = "Hai superato il budget di:";
+                budgetRimasto.TextColor = Color.Red;
+                budgetRimasto.Text = (-1 * value).ToString("0.##") + " €";
+            }
+            else
+            {
+                flag1 = true;
+                flag2 = true;
+                textBudget.Text = "Hai ancora a disposizione:";
+                budgetRimasto.TextColor = Color.White;
+                budgetRimasto.Text = value.ToString("0.##") + " €";
             }
         }
     }
