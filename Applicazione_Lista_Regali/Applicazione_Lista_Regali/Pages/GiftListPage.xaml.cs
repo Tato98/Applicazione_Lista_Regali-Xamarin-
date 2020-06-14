@@ -87,7 +87,7 @@ namespace Applicazione_Lista_Regali.Pages
 
         private void ShowGiftListButton_Clicked(object sender, EventArgs e)
         {
-            var b = (Button)sender;
+            var b = (ImageButton)sender;
             var cnt = (Contatti)b.CommandParameter;
 
             HideOrShowGiftList(cnt);
@@ -115,7 +115,7 @@ namespace Applicazione_Lista_Regali.Pages
 
         private async void ModifyGiftButton_Clicked(object sender, EventArgs e)
         {
-            var b = (Button)sender;
+            var b = (ImageButton)sender;
             var gift = (Regalo)b.CommandParameter;
             var cnt = PickContactByNumber(gift.NumeroContatto);
 
@@ -157,7 +157,7 @@ namespace Applicazione_Lista_Regali.Pages
             bool answer = await DisplayAlert("Attenzione!", "Sei sicuro di voler eliminare questo regalo?", "Si", "No");
             if (answer)
             {
-                var b = (Button)sender;
+                var b = (ImageButton)sender;
                 var gift = (Regalo)b.CommandParameter;
                 var cnt = PickContactByNumber(gift.NumeroContatto);
                 cnt.Regali.Remove(gift);
@@ -197,11 +197,11 @@ namespace Applicazione_Lista_Regali.Pages
 
                 case GestureStatus.Running:
                     direction = e.TotalY < 0 ? 1 : -1;
-                    //var yProp = layoutBoundsHeight + (-e.TotalY / (double)layoutHeight);
-                    //if ((yProp > layoutPropHeightMin) & (yProp < layoutPropHeightMax))
-                    //{
-                        //AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.5, 1.00, 0.9, yProp));
-                    //}
+                    var yProp = layoutBoundsHeight + (-e.TotalY / (double)layoutHeight);
+                    if ((yProp > layoutPropHeightMin) & (yProp < layoutPropHeightMax))
+                    {
+                        AbsoluteLayout.SetLayoutBounds(bottomDrawer, new Rectangle(0.00, 1.00, 1.00, yProp));
+                    }
                     break;
 
                 case GestureStatus.Completed:

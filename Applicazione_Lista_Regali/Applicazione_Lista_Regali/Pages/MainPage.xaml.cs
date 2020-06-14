@@ -2,7 +2,6 @@
 using Applicazione_Lista_Regali.Models;
 using Applicazione_Lista_Regali.Pages;
 using Applicazione_Lista_Regali.Utilities;
-using DK.SlidingPanel.Interface;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +16,7 @@ namespace Applicazione_Lista_Regali
     public partial class MainPage : ContentPage, ListCreationPage.ISendData, GiftListCell.IMenuItem
     {
         ObservableCollection<ListaRegali> lista = new ObservableCollection<ListaRegali>();
-        Button button;
+        ImageButton button;
         ListView listView;
         StackLayout stackLayout;
 
@@ -28,15 +27,21 @@ namespace Applicazione_Lista_Regali
             listView = new ListView
             {
                 HorizontalOptions = LayoutOptions.StartAndExpand,
-                VerticalOptions = LayoutOptions.StartAndExpand
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                SeparatorVisibility = SeparatorVisibility.Default,
+                SeparatorColor = Color.Black
             };
             listView.ItemSelected += ListView_ItemSelected;
 
-            button = new Button
+            button = new ImageButton
             {
-                Text = "Premi",
-                HorizontalOptions = LayoutOptions.End,
-                VerticalOptions = LayoutOptions.End
+                Padding = 15,
+                Source = "plus.png",
+                WidthRequest = 90,
+                HeightRequest = 90,
+                BackgroundColor = Color.Transparent,
+                HorizontalOptions = LayoutOptions.EndAndExpand,
+                VerticalOptions = LayoutOptions.EndAndExpand
             };
             button.Clicked += ButtonAdd_Clicked;
 

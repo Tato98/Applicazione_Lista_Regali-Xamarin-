@@ -37,12 +37,12 @@
                                             SwipeBehaviorOnInvoked="Close">
                                             <SwipeItem
                                                 CommandParameter="{Binding .}"
-                                                Text="Aggiungi"
+                                                IconImageSource="gift.png"
                                                 BackgroundColor="#FFC107"
                                                 Invoked="AddGiftSwipeItem_Invoked"/>
                                             <SwipeItem
                                                 CommandParameter="{Binding .}"
-                                                Text="Delete"
+                                                IconImageSource="delete.png"
                                                 BackgroundColor="Red"
                                                 Invoked="OnDeleteSwipeItem_Invoked"/>
                                         </SwipeItems>
@@ -77,13 +77,16 @@
                                                 HorizontalOptions="EndAndExpand"
                                                 VerticalOptions="EndAndExpand">
 
-                                                <Button
-                                                    HorizontalOptions="EndAndExpand"
-                                                    VerticalOptions="EndAndExpand"
+                                                <ImageButton
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
                                                     CommandParameter="{Binding .}"
-                                                    Text="Apri"
+                                                    Source="down_arrow.png"
+                                                    WidthRequest="20"
+                                                    HeightRequest="20"
+                                                    BackgroundColor="Transparent"
                                                     Clicked="ShowGiftListButton_Clicked">
-                                                </Button>
+                                                </ImageButton>
 
                                             </StackLayout>
 
@@ -172,19 +175,26 @@
                                                                 </StackLayout>
 
                                                                 <StackLayout
-                                                                    Orientation="Horizontal">
+                                                                    Orientation="Horizontal"
+                                                                    Padding="10">
 
-                                                                    <Button
-                                                                        Text="Modifica"
+                                                                    <ImageButton
+                                                                        Source="edit.png"
+                                                                        WidthRequest="30"
+                                                                        HeightRequest="30"
+                                                                        BackgroundColor="Transparent"
                                                                         CommandParameter="{Binding .}"
                                                                         Clicked="ModifyGiftButton_Clicked">
-                                                                    </Button>
+                                                                    </ImageButton>
 
-                                                                    <Button
-                                                                        Text="Cancella"
+                                                                    <ImageButton
+                                                                        Source="delete.png"
+                                                                        WidthRequest="30"
+                                                                        HeightRequest="30"
+                                                                        BackgroundColor="Transparent"
                                                                         CommandParameter="{Binding .}"
                                                                         Clicked="DeleteGiftButton_Clicked">
-                                                                    </Button>
+                                                                    </ImageButton>
 
                                                                 </StackLayout>
 
@@ -320,7 +330,7 @@
                         HorizontalOptions="Center"
                         VerticalOptions="CenterAndExpand"
                         TextColor="White"
-                        FontSize="30"
+                        FontSize="40"
                         FontAttributes="Bold">
                     </Label>
 

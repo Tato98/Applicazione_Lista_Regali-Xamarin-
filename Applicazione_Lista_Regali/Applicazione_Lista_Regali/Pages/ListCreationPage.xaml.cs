@@ -96,9 +96,9 @@ namespace Applicazione_Lista_Regali
             void ReceiveData(ListaRegali listaRegali);
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private void ClearButton_Clicked(object sender, EventArgs e)
         {
-            var b = (Button)sender;
+            var b = (ImageButton)sender;
             var cnt = (Contatti)b.CommandParameter;
             contatti.Remove(cnt);
         }

@@ -13,6 +13,7 @@ namespace Applicazione_Lista_Regali.Models
         public event PropertyChangedEventHandler PropertyChanged;
         private string nome;
         private string descrizione;
+        private string budget;
 
         public string Nome
         {
@@ -47,7 +48,21 @@ namespace Applicazione_Lista_Regali.Models
 
             }
         }
-        public string Budget { get; set; }
+        public string Budget
+        {
+            get
+            {
+                return budget;
+            }
+            set
+            {
+                if(!value.Equals(budget, StringComparison.Ordinal))
+                {
+                    budget = value;
+                    OnPropertyChanged("Budget");
+                }
+            }
+        }
         public ObservableCollection<Contatti> Contatti { get; set; }
 
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)

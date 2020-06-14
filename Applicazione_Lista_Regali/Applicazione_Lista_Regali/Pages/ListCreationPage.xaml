@@ -40,11 +40,14 @@
                     MaxLength="10"
                     Margin="10"/>
                 
-                <Button
-                    Text="contatti"
+                <ImageButton
+                    Source="contact.png"
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    BackgroundColor="Transparent"
                     Clicked="ButtonContacts_Clicked"
                     Margin="10">
-                </Button>
+                </ImageButton>
 
             </StackLayout>
 
@@ -55,7 +58,8 @@
                 <ListView
                     x:Name="contactList"
                     RowHeight="70"
-                    SelectionMode="None">
+                    SelectionMode="None"
+                    SeparatorColor="Black">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -82,16 +86,19 @@
                                     </StackLayout>
 
                                     <StackLayout
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand">
+                                        Padding="10"
+                                        HorizontalOptions="EndAndExpand"
+                                        VerticalOptions="CenterAndExpand">
 
-                                        <Button
+                                        <ImageButton
                                             CommandParameter="{Binding .}"
-                                            HorizontalOptions="End"
+                                            HorizontalOptions="Center"
                                             VerticalOptions="Center"
-                                            Text="Cancella"
-                                            Clicked="Button_Clicked">
-                                        </Button>
+                                            Source="clear.png"
+                                            WidthRequest="20"
+                                            HeightRequest="20"
+                                            Clicked="ClearButton_Clicked">
+                                        </ImageButton>
 
                                     </StackLayout>
 
