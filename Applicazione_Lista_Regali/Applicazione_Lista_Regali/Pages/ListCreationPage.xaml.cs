@@ -6,7 +6,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -68,12 +67,12 @@ namespace Applicazione_Lista_Regali
                 }
                 else
                 {
-                    DependencyService.Get<IMessage>().ShortAlert("Il nome della lista è già esistente"); 
+                    DependencyService.Get<IMessage>().ShortAlert("Il nome della lista è già esistente");
                 }
             }
             else
             {
-                DependencyService.Get<IMessage>().ShortAlert("Inserire il nome della lista"); 
+                DependencyService.Get<IMessage>().ShortAlert("Inserire il nome della lista");
             }
         }
 
@@ -84,7 +83,7 @@ namespace Applicazione_Lista_Regali
 
         public void ReceiveContacts(List<Contatti> selectedContact)
         {
-            foreach(Contatti cnt in selectedContact)
+            foreach (Contatti cnt in selectedContact)
             {
                 contatti.Add(cnt);
             }
@@ -103,4 +102,5 @@ namespace Applicazione_Lista_Regali
             contatti.Remove(cnt);
         }
     }
+
 }
