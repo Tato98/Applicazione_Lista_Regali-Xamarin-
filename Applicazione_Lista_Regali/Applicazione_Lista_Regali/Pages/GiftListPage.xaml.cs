@@ -13,7 +13,7 @@ using Xamarin.Forms.Xaml;
 namespace Applicazione_Lista_Regali.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GiftListPage : ContentPage
+    public partial class GiftListPage : ContentPage, SelectedContactsPage.ISendSelectedContact
     {
         public ListaRegali listaRegali;
         public ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
@@ -244,6 +244,11 @@ namespace Applicazione_Lista_Regali.Pages
             return tot.ToString("0.##");
         }
 
+        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new SelectedContactsPage(contatti, this));
+        }
+
         //Mostra degli alert in relazione al totale che si è speso e modificail valore del budget rimasto nel pannello in basso
         private void ControlRemainingBudget(decimal value)
         {
@@ -283,6 +288,14 @@ namespace Applicazione_Lista_Regali.Pages
                 textBudget.Text = "Hai ancora a disposizione:";
                 budgetRimasto.TextColor = Color.White;
                 budgetRimasto.Text = value.ToString("0.##") + " €";
+            }
+        }
+
+        public void ReceiveContacts(List<Contatti> selectedContact)
+        {
+            foreach (Contatti cnt in selectedContact)
+            {
+                contatti.Add(cnt);
             }
         }
     }

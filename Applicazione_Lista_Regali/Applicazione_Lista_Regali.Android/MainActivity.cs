@@ -34,7 +34,6 @@ namespace Applicazione_Lista_Regali.Droid
             Forms.SetFlags("SwipeView_Experimental");
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            _ = CheckAndRequestContactsPermission();
             LoadApplication(new App());
 
             
@@ -44,18 +43,6 @@ namespace Applicazione_Lista_Regali.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-
-        public async Task<PermissionStatus> CheckAndRequestContactsPermission()
-        {
-            var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
-            if (status != PermissionStatus.Granted)
-            {
-                status = await Permissions.RequestAsync<Permissions.ContactsRead>();
-                if (status == PermissionStatus.Denied) { DependencyService.Get<IMessage>().ShortAlert(" Accesso ai contatti negato "); }
-            }
-
-            return status;
         }
     }
 }

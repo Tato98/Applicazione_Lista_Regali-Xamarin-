@@ -29,8 +29,16 @@ namespace Applicazione_Lista_Regali
         private async void ShowContact(ObservableCollection<Contatti> contatti)
         {
             var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync(GetContactsName(contatti));
-            listContact.ItemsSource = ContactList;
-            contactList = ContactList;
+            if(ContactList.Count == 0)
+            {
+                DisplayAlert("Attenzione!", "Per poter usufruire a pieno delle funzionalità di quest'app assicurati che i permessi richiesti siano garantiti.", "OK");
+                Navigation.PopAsync();
+            }
+            else if(ContactList.Count > 0)
+            {
+                listContact.ItemsSource = ContactList;
+                contactList = ContactList;
+            }
         }
 
         public interface ISendSelectedContact

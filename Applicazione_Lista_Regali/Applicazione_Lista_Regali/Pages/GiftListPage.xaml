@@ -7,6 +7,17 @@
              x:Class="Applicazione_Lista_Regali.Pages.GiftListPage"
              x:Name="contentPage">
 
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem
+            IconImageSource="add_contact.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="ToolbarItem_Clicked">
+        </ToolbarItem>
+
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
 
         <AbsoluteLayout
@@ -188,7 +199,7 @@
                                                                     </ImageButton>
 
                                                                     <ImageButton
-                                                                        Source="delete.png"
+                                                                        Source="cancel.png"
                                                                         WidthRequest="30"
                                                                         HeightRequest="30"
                                                                         BackgroundColor="Transparent"
