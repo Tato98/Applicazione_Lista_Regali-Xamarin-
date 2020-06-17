@@ -1,12 +1,13 @@
 ﻿using Applicazione_Lista_Regali.Models;
 using Applicazione_Lista_Regali.Utilities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,6 +18,7 @@ namespace Applicazione_Lista_Regali.Pages
     {
         public ListaRegali listaRegali;
         public ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
+        public ObservableCollection<ListaRegali> lista;
         public Contatti cnt = new Contatti();
 
         private bool flag1, flag2;
@@ -27,11 +29,12 @@ namespace Applicazione_Lista_Regali.Pages
         const double layoutPropHeightMax = 0.5;
         const double layoutPropHeightMin = 0.08;
 
-        public GiftListPage(ListaRegali listaRegali)
+        public GiftListPage(ListaRegali listaRegali, ObservableCollection<ListaRegali> lista)
         {
             InitializeComponent();
             flag1 = true;
             flag2 = true;
+            this.lista = lista;
             contentPage.Title = listaRegali.Nome;
             this.listaRegali = listaRegali;
             contatti = listaRegali.Contatti;
@@ -48,6 +51,8 @@ namespace Applicazione_Lista_Regali.Pages
                 var cnt = (Contatti)s.CommandParameter;
                 contatti.Remove(cnt);
                 ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
+                //Salvataggio della lista nelle shared preferences
+                Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
             }
         }
 
@@ -70,7 +75,7 @@ namespace Applicazione_Lista_Regali.Pages
             if((nomeRegalo.Text != null && nomeRegalo.Text != "") && (prezzoRegalo.Text != null && prezzoRegalo.Text != ""))
             {
                 decimal value = decimal.Parse(prezzoRegalo.Text);
-                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##"), cnt.Numero));
+                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##") + " €", cnt.Numero));
                 cnt.TotPrice();
                 cnt.SizeGiftList();
                 UpdateContacts(cnt);
@@ -78,6 +83,8 @@ namespace Applicazione_Lista_Regali.Pages
                 popupAddGiftView.IsVisible = false;
                 nomeRegalo.Text = null;
                 prezzoRegalo.Text = null;
+                //Salvataggio della lista nelle shared preferences
+                Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
             }
             else
             {
@@ -127,6 +134,8 @@ namespace Applicazione_Lista_Regali.Pages
                 {
                     gift.Nome = result;
                     UpdateContacts(cnt);
+                    //Salvataggio della lista nelle shared preferences
+                    Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
                 }
                 else if (result == "")
                 {
@@ -144,6 +153,8 @@ namespace Applicazione_Lista_Regali.Pages
                     cnt.SizeGiftList();
                     UpdateContacts(cnt);
                     ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
+                    //Salvataggio della lista nelle shared preferences
+                    Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
                 }
                 else if (result == "")
                 {
@@ -165,6 +176,8 @@ namespace Applicazione_Lista_Regali.Pages
                 cnt.SizeGiftList();
                 UpdateContacts(cnt);
                 ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
+                //Salvataggio della lista nelle shared preferences
+                Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
             }
         }
 
@@ -226,6 +239,8 @@ namespace Applicazione_Lista_Regali.Pages
                 decimal value = Decimal.Parse(result);
                 listaRegali.Budget = value.ToString("0.##") + " €";
                 ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
+                //Salvataggio della lista nelle shared preferences
+                Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
             }
             else if (result == "")
             {
@@ -296,6 +311,8 @@ namespace Applicazione_Lista_Regali.Pages
             foreach (Contatti cnt in selectedContact)
             {
                 contatti.Add(cnt);
+                //Salvataggio della lista nelle shared preferences
+                Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
             }
         }
     }

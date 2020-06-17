@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,9 +29,15 @@ namespace Applicazione_Lista_Regali
         private async void ShowContact(ObservableCollection<Contatti> contatti)
         {
             var ContactList = await DependencyService.Get<IContacts>().GetDeviceContactsAsync(GetContactsName(contatti));
-            if(ContactList.Count == 0)
+            var status = await Permissions.CheckStatusAsync<Permissions.ContactsRead>();
+            if (status == PermissionStatus.Denied)
             {
                 DisplayAlert("Attenzione!", "Per poter usufruire a pieno delle funzionalità di quest'app assicurati che i permessi richiesti siano garantiti.", "OK");
+                Navigation.PopAsync();
+            }
+            else if(ContactList.Count == 0 && status == PermissionStatus.Granted)
+            {
+                DisplayAlert("Nessun contatto", "Non è stato trovato nessun contatto nella rubrica di questo dispositivo.", "OK");
                 Navigation.PopAsync();
             }
             else if(ContactList.Count > 0)

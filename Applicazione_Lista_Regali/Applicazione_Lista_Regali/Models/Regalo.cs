@@ -13,7 +13,7 @@ namespace Applicazione_Lista_Regali.Models
         public Regalo(string nome, string prezzo, string numeroContatto)
         {
             this.Nome = nome;
-            this.Prezzo = prezzo + " €";
+            this.Prezzo = prezzo;
             this.NumeroContatto = numeroContatto;
         }
     }

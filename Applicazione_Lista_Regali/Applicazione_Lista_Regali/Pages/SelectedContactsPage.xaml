@@ -19,10 +19,10 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        
+
         <StackLayout>
 
-            <ListView  
+            <ListView
                 x:Name="listContact"
                 RowHeight="100"
                 SelectionMode="None">

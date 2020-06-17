@@ -61,7 +61,7 @@ namespace Applicazione_Lista_Regali
                 nome = nomeLista.Text;
                 if (!nomi.Contains(nome))
                 {
-                    ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##"), contatti);
+                    ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##") + " €", contatti);
                     sendData.ReceiveData(listaRegali);
                     Navigation.PopToRootAsync();
                 }

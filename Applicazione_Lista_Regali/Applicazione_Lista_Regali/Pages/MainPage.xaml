@@ -6,4 +6,113 @@
              mc:Ignorable="d"
              x:Class="Applicazione_Lista_Regali.MainPage">
 
+    <ContentPage.Content>
+
+        <StackLayout>
+
+            <ListView
+                x:Name="list"
+                HorizontalOptions = "FillAndExpand"
+                VerticalOptions = "FillAndExpand"
+                SeparatorVisibility="Default"
+                SeparatorColor="Black"
+                RowHeight="100"
+                ItemSelected="ListView_ItemSelected">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <ViewCell.ContextActions>
+
+                                <MenuItem
+                                    Text="Elimina"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="Delete_Clicked">
+                                </MenuItem>
+
+                                <MenuItem
+                                    Text="Modifica"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="Modify_Clicked">
+                                </MenuItem>
+
+                            </ViewCell.ContextActions>
+
+                            <StackLayout
+                                HorizontalOptions = "FillAndExpand"
+                                VerticalOptions = "FillAndExpand"
+                                Orientation = "Horizontal"
+                                Padding = "15">
+
+                                <StackLayout
+                                    Padding = "10"
+                                    HorizontalOptions = "StartAndExpand"
+                                    VerticalOptions = "StartAndExpand">
+
+                                    <Image
+                                        HorizontalOptions = "StartAndExpand"
+                                        VerticalOptions = "StartAndExpand"
+                                        Source = "gift.png"
+                                        WidthRequest = "60"
+                                        HeightRequest = "60"
+                                        BackgroundColor = "Transparent">
+                                    </Image>
+                                    
+                                </StackLayout>
+                                
+                                <StackLayout
+                                    HorizontalOptions = "StartAndExpand"
+                                    VerticalOptions = "StartAndExpand"
+                                    Orientation = "Vertical">
+
+                                    <Label
+                                        HorizontalOptions = "StartAndExpand"
+                                        FontSize = "24"
+                                        FontAttributes = "Bold"
+                                        Text="{Binding Nome}">
+                                    </Label>
+
+                                    <Label
+                                        HorizontalOptions = "StartAndExpand"
+                                        FontSize = "18"
+                                        Text="{Binding Descrizione}">
+                                    </Label>
+                                    
+                                </StackLayout>
+                                
+                                <StackLayout
+                                    HorizontalOptions = "EndAndExpand"
+                                    VerticalOptions = "EndAndExpand">
+
+                                    <Label
+                                        HorizontalOptions = "End"
+                                        VerticalOptions = "End"
+                                        Text="{Binding Budget}">
+                                    </Label>
+                                    
+                                </StackLayout>
+                                
+                            </StackLayout>
+                            
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ImageButton
+                HorizontalOptions = "EndAndExpand"
+                VerticalOptions = "EndAndExpand"
+                Padding = "15"
+                Source = "plus.png"
+                WidthRequest = "90"
+                HeightRequest = "90"
+                BackgroundColor="Transparent"
+                Clicked="ButtonAdd_Clicked">
+            </ImageButton>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+
 </ContentPage>

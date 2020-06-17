@@ -78,7 +78,7 @@ namespace Applicazione_Lista_Regali.Models
         {
             this.Nome = nome;
             this.Descrizione = descrizione;
-            this.Budget = budget + " €";
+            this.Budget = budget;
             this.Contatti = contatti;
         }
     }
