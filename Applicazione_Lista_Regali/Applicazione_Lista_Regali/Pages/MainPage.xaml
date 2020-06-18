@@ -46,6 +46,7 @@
                                 Padding = "15">
 
                                 <StackLayout
+                                    WidthRequest="50"
                                     Padding = "10"
                                     HorizontalOptions = "StartAndExpand"
                                     VerticalOptions = "StartAndExpand">
@@ -62,6 +63,7 @@
                                 </StackLayout>
                                 
                                 <StackLayout
+                                    WidthRequest="200"
                                     HorizontalOptions = "StartAndExpand"
                                     VerticalOptions = "StartAndExpand"
                                     Orientation = "Vertical">
@@ -82,6 +84,7 @@
                                 </StackLayout>
                                 
                                 <StackLayout
+                                    WidthRequest="50"
                                     HorizontalOptions = "EndAndExpand"
                                     VerticalOptions = "EndAndExpand">
 

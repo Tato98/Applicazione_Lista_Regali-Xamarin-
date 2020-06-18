@@ -21,12 +21,13 @@
     <ContentPage.Content>
 
         <AbsoluteLayout
-            Padding="0"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand"
             AbsoluteLayout.LayoutBounds="0,1,1,1">
 
             <StackLayout
+                Margin="0,0,0,45"
+                Padding="10"
                 AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
                 AbsoluteLayout.LayoutFlags="All">
 
@@ -36,7 +37,8 @@
                     x:Name="list"
                     HasUnevenRows="True"
                     SelectionMode="None"
-                    SeparatorColor="Black">
+                    SeparatorColor="White"
+                    SeparatorVisibility="Default">
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -68,6 +70,7 @@
                                             Orientation="Horizontal">
 
                                             <StackLayout
+                                                WidthRequest="200"
                                                 Padding="10">
 
                                                 <Label 
@@ -85,12 +88,11 @@
                                             </StackLayout>
 
                                             <StackLayout
-                                                HorizontalOptions="EndAndExpand"
-                                                VerticalOptions="EndAndExpand">
+                                                WidthRequest="20">
 
                                                 <ImageButton
                                                     HorizontalOptions="Center"
-                                                    VerticalOptions="Center"
+                                                    VerticalOptions="EndAndExpand"
                                                     CommandParameter="{Binding .}"
                                                     Source="down_arrow.png"
                                                     WidthRequest="20"
@@ -102,11 +104,13 @@
                                             </StackLayout>
 
                                             <StackLayout
+                                                WidthRequest="200"
                                                 HorizontalOptions="FillAndExpand"
                                                 VerticalOptions="FillAndExpand"
                                                 Padding="10">
 
                                                 <StackLayout
+                                                    HorizontalOptions="End"
                                                     Orientation="Horizontal">
 
                                                     <Label
@@ -124,6 +128,7 @@
                                                 </StackLayout>
 
                                                 <StackLayout
+                                                    HorizontalOptions="End"
                                                     Orientation="Horizontal">
 
                                                     <Label
@@ -157,8 +162,8 @@
                                                 x:Name="giftList"
                                                 RowHeight="65"
                                                 ItemsSource="{Binding Regali}"
-                                                SelectionMode="None"
                                                 SeparatorColor="Black"
+                                                SelectionMode="None"
                                                 SeparatorVisibility="Default">
 
                                                 <ListView.ItemTemplate>
