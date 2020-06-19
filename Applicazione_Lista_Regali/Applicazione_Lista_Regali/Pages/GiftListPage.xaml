@@ -7,6 +7,7 @@
              x:Class="Applicazione_Lista_Regali.Pages.GiftListPage"
              x:Name="contentPage">
 
+    <!--Menu presente nell'action bar-->
     <ContentPage.ToolbarItems>
 
         <ToolbarItem
@@ -18,6 +19,7 @@
 
     </ContentPage.ToolbarItems>
 
+    <!--Contenuto della pagina-->
     <ContentPage.Content>
 
         <AbsoluteLayout
@@ -25,6 +27,7 @@
             VerticalOptions="FillAndExpand"
             AbsoluteLayout.LayoutBounds="0,1,1,1">
 
+            <!--StackLayout contenente la lista di contatti-->
             <StackLayout
                 Margin="0,0,0,45"
                 Padding="10"
@@ -32,7 +35,6 @@
                 AbsoluteLayout.LayoutFlags="All">
 
                 <!--Lista dei contatti scelti-->
-
                 <ListView
                     x:Name="list"
                     HasUnevenRows="True"
@@ -44,6 +46,7 @@
                         <DataTemplate>
                             <ViewCell>
 
+                                <!--Swipe degli elementi-->
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems
@@ -61,8 +64,7 @@
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
 
-                                    <!-- Content -->
-
+                                    <!--Content dello Swipe-->
                                     <StackLayout
                                         BackgroundColor="#FFE6DE">
 
@@ -156,7 +158,6 @@
                                             IsVisible="{Binding Visible}">
 
                                             <!--Lista interna dei regali-->
-
                                             <ListView
                                                 BackgroundColor="White"
                                                 x:Name="giftList"
@@ -235,7 +236,6 @@
             </StackLayout>
 
             <!--Popup per aggiungere regali-->
-
             <ContentView
                 x:Name="popupAddGiftView"
                 BackgroundColor="#C0808080"

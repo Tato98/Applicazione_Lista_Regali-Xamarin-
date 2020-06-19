@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+//Classe che gestisce la creazione di una lista regali
 namespace Applicazione_Lista_Regali
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListCreationPage : ContentPage, SelectedContactsPage.ISendSelectedContact
     {
-        List<String> nomi;
-        ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();
-        ISendData sendData;
+        List<String> nomi;                                                                  //lista dei nomi già esistenti per la lista regali
+        ObservableCollection<Contatti> contatti = new ObservableCollection<Contatti>();     //lista contatti
+        ISendData sendData;                                                                 //interfaccia per inviare i contatti scelti
 
+        //Costruttore
         public ListCreationPage(List<String> nomi, ISendData sendData)
         {
             InitializeComponent();
@@ -25,11 +27,13 @@ namespace Applicazione_Lista_Regali
             this.sendData = sendData;
         }
 
+        //Metodo che gestisce l'annullamento della creazione della lista
         private void ButtonCancel_Clicked(object sender, EventArgs e)
         {
             Navigation.PopToRootAsync();
         }
 
+        //Metodo che gestise la creazione della lista
         private void ButtonCreate_Clicked(object sender, EventArgs e)
         {
             String nome, descrizione;
@@ -59,6 +63,8 @@ namespace Applicazione_Lista_Regali
             if (nomeLista.Text != null && nomeLista.Text != "")
             {
                 nome = nomeLista.Text;
+
+                //controlla se il nome inserito esiste già
                 if (!nomi.Contains(nome))
                 {
                     ListaRegali listaRegali = new ListaRegali(nome, descrizione, value.ToString("0.##") + " €", contatti);
@@ -76,11 +82,13 @@ namespace Applicazione_Lista_Regali
             }
         }
 
+        //Metodo che gestisce il click del bottone che permette di navigare verso la pagina di selezione dei contatti dalla rubrica
         private void ButtonContacts_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SelectedContactsPage(contatti, this));
         }
 
+        //Metodo dell'interfaccia SelectedContactsPage.ISendSelectedContact che riceve i contatti selezionati
         public void ReceiveContacts(List<Contatti> selectedContact)
         {
             foreach (Contatti cnt in selectedContact)
@@ -90,11 +98,13 @@ namespace Applicazione_Lista_Regali
             contactList.ItemsSource = contatti;
         }
 
+        //interfaccia che permette di inviare la lista regali alla MainPage per il suo inserimento nella lista di 'lista regali'
         public interface ISendData
         {
             void ReceiveData(ListaRegali listaRegali);
         }
 
+        //Metodo che gestisce l'eliminazione di uno dei contatti scelti dopo la fase di selezione dei contatti dalla rubrica
         private void ClearButton_Clicked(object sender, EventArgs e)
         {
             var b = (ImageButton)sender;

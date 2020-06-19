@@ -10,6 +10,7 @@
 
         <StackLayout>
 
+            <!--Lista di 'lista regali'-->
             <ListView
                 x:Name="list"
                 HorizontalOptions = "FillAndExpand"
@@ -23,6 +24,7 @@
                     <DataTemplate>
                         <ViewCell>
 
+                            <!--Menu visualizzati dopo un long click su un elemento della lista-->
                             <ViewCell.ContextActions>
 
                                 <MenuItem
@@ -103,6 +105,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
+            <!--Bottone per l'aggiunta di un nuovo elemento alla lista-->
             <ImageButton
                 HorizontalOptions = "EndAndExpand"
                 VerticalOptions = "EndAndExpand"

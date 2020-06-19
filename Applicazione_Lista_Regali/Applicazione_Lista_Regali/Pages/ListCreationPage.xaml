@@ -9,6 +9,7 @@
     
     <ContentPage.Content>
 
+        <!--Campi da riempire con nome, descrizione e budget-->
         <StackLayout
             Padding="10">
 
@@ -51,6 +52,7 @@
 
             </StackLayout>
 
+            <!--Lista dei contatti scelti-->
             <StackLayout
                 VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand">
@@ -111,6 +113,7 @@
                 
             </StackLayout>
 
+            <!--Bottoni di creazione e annullamento-->
             <StackLayout
                 Orientation="Horizontal">
 

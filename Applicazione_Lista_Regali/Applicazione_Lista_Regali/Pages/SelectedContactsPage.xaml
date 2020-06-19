@@ -7,6 +7,7 @@
              Title="Contatti"
              x:Class="Applicazione_Lista_Regali.SelectedContactsPage">
 
+    <!--Bottone che permette di inviare i contatti selezionati-->
     <ContentPage.ToolbarItems>
 
         <ToolbarItem
@@ -22,6 +23,7 @@
 
         <StackLayout>
 
+            <!--Lista dei contatti della rubrica-->
             <ListView
                 x:Name="listContact"
                 RowHeight="100"

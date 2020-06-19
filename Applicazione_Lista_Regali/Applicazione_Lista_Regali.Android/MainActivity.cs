@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Permissions = Xamarin.Essentials.Permissions;
 using Applicazione_Lista_Regali.Utilities;
 
+//Classe che gestisce l'avvio dell'applicazione Android
 namespace Applicazione_Lista_Regali.Droid
 {
     [Activity(Label = "Applicazione_Lista_Regali", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -31,7 +32,7 @@ namespace Applicazione_Lista_Regali.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            Forms.SetFlags("SwipeView_Experimental");
+            Forms.SetFlags("SwipeView_Experimental");                       //Serve ad implementare lo swipe gesture
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

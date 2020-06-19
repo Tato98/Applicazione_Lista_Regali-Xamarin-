@@ -17,15 +17,18 @@ namespace Applicazione_Lista_Regali
         {
             InitializeComponent();
 
+            //Prova a inizializzare 'Lista' con il valore salvato nelle shared preferences...
             try
             {
                 Lista = JsonConvert.DeserializeObject<ObservableCollection<ListaRegali>>(Preferences.Get("Lista_Regali", "defaultValue"));
             }
+            //... se prende l'eccezione seguente inizializza 'Lista' con una lista vuota.
             catch (JsonReaderException jre)
             {
                 Lista = new ObservableCollection<ListaRegali>();
             }
             
+            //Imposta MainPage come la pagina radice e gli passa il valore di 'Lista'
             MainPage = new NavigationPage(new MainPage(Lista));
         }
 
