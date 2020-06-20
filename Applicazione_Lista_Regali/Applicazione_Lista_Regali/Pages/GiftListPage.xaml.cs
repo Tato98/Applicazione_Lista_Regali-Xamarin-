@@ -49,7 +49,7 @@ namespace Applicazione_Lista_Regali.Pages
             contatti = listaRegali.Contatti;
             list.ItemsSource = contatti;
 
-            //Esegue uncontrollo sul budget rimanente all'apertura della lista al fine di notificare lo stato del budget attuale all'utente
+            //Esegue un controllo sul budget rimanente all'apertura della lista al fine di notificare lo stato del budget attuale all'utente
             ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
         }
 
