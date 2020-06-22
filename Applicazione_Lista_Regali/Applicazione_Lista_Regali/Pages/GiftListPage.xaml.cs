@@ -369,6 +369,7 @@ namespace Applicazione_Lista_Regali.Pages
             }
         }
 
+        //Metodo che gestisce l'operazione relativa al contrassegnare un regalo come comprato o meno.
         private void ShoppingCart_Clicked(object sender, EventArgs e)
         {
             var b = (ImageButton)sender;
