@@ -14,7 +14,14 @@
             IconImageSource="add_contact.png"
             Order="Primary"
             Priority="0"
-            Clicked="ToolbarItem_Clicked">
+            Clicked="AddContactsItem_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem
+            IconImageSource="search.png"
+            Order="Primary"
+            Priority="0"
+            Clicked="SearchItem_Clicked">
         </ToolbarItem>
 
     </ContentPage.ToolbarItems>
@@ -66,7 +73,7 @@
 
                                     <!--Content dello Swipe-->
                                     <StackLayout
-                                        BackgroundColor="#FFE6DE">
+                                        BackgroundColor="#FFF4F1">
 
                                         <StackLayout
                                             Orientation="Horizontal">
@@ -174,17 +181,30 @@
                                                             <StackLayout
                                                                 Orientation="Horizontal">
 
+                                                                <ImageButton
+                                                                    HorizontalOptions="Start"
+                                                                    VerticalOptions="CenterAndExpand"
+                                                                    BackgroundColor="Transparent"
+                                                                    WidthRequest="50"
+                                                                    CommandParameter="{Binding .}"
+                                                                    Source="{Binding ShoppingCart}"
+                                                                    Clicked="ShoppingCart_Clicked">
+                                                                </ImageButton>
+
                                                                 <StackLayout
                                                                     Padding="5"
+                                                                    WidthRequest="200"
                                                                     HorizontalOptions="StartAndExpand"
                                                                     VerticalOptions="StartAndExpand">
                                                                     <Label
+                                                                        IsEnabled="{Binding NoNComprato}"
                                                                         Text="{Binding Nome}"
                                                                         FontSize="18"
                                                                         FontAttributes="Bold">
                                                                     </Label>
 
                                                                     <Label
+                                                                        IsEnabled="{Binding NoNComprato}"
                                                                         Text="{Binding Prezzo}"
                                                                         FontSize="15"
                                                                         FontAttributes="None">
@@ -196,6 +216,7 @@
                                                                     Padding="10">
 
                                                                     <ImageButton
+                                                                        IsVisible="{Binding NoNComprato}"
                                                                         Source="edit.png"
                                                                         WidthRequest="30"
                                                                         HeightRequest="30"
@@ -205,6 +226,7 @@
                                                                     </ImageButton>
 
                                                                     <ImageButton
+                                                                        IsVisible="{Binding NoNComprato}"
                                                                         Source="cancel.png"
                                                                         WidthRequest="30"
                                                                         HeightRequest="30"

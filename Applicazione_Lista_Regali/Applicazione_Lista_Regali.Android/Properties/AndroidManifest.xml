@@ -3,5 +3,6 @@
     <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application android:label="Applicazione_Lista_Regali.Android"></application>
 </manifest>

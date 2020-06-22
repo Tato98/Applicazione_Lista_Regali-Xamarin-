@@ -95,7 +95,7 @@ namespace Applicazione_Lista_Regali.Pages
             {
                 //Si aggiunge il regalo
                 decimal value = decimal.Parse(prezzoRegalo.Text);
-                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##") + " €", cnt.Numero));
+                cnt.Regali.Add(new Regalo(nomeRegalo.Text, value.ToString("0.##") + " €", cnt.Numero, true));
 
                 //Si effettuano controlli sul budget e sul numero totale di regali e del loro prezzo per il contatto di interesse
                 cnt.TotPrice();
@@ -298,15 +298,27 @@ namespace Applicazione_Lista_Regali.Pages
             decimal tot = 0;
             foreach(Contatti cnt in contatti)
             {
-                tot += Decimal.Parse(GetOnlyDecimal(cnt.TotPrezzo));
+                foreach(Regalo r in cnt.Regali)
+                {
+                    if (!r.NoNComprato)
+                    {
+                        tot += Decimal.Parse(GetOnlyDecimal(r.Prezzo));
+                    }
+                } 
             }
             return tot.ToString("0.##");
         }
 
         //Metodo che permette la gestione del click del bottone che apre la lista selezione contatti della rubrica
-        private void ToolbarItem_Clicked(object sender, EventArgs e)
+        private void AddContactsItem_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new SelectedContactsPage(contatti, this));
+        }
+
+        //metodo che gestisce il click del bottone che permette di collegarsi alla pagina web specificata
+        private void SearchItem_Clicked(object sender, EventArgs e)
+        {
+            DependencyService.Get<IWebPage>().Internet("http://www.amazon.it");
         }
 
         //Mostra degli alert in relazione al totale che si è speso e modifica il valore del budget rimasto nel pannello in basso
@@ -355,6 +367,32 @@ namespace Applicazione_Lista_Regali.Pages
                 budgetRimasto.TextColor = Color.White;
                 budgetRimasto.Text = value.ToString("0.##") + " €";
             }
+        }
+
+        private void ShoppingCart_Clicked(object sender, EventArgs e)
+        {
+            var b = (ImageButton)sender;
+            var gift = (Regalo)b.CommandParameter;
+            var cnt = PickContactByNumber(gift.NumeroContatto);
+
+            if (gift.NoNComprato)
+            {
+                gift.ShoppingCart = "shopping_cart_green.png";
+                gift.NoNComprato = false;
+                DependencyService.Get<IMessage>().ShortAlert("Regalo contrassegnato come comprato");
+            }
+            else
+            {
+                gift.ShoppingCart = "shopping_cart_red.png";
+                gift.NoNComprato = true;
+                DependencyService.Get<IMessage>().ShortAlert("Regalo rimosso dal carrello");
+            }
+
+            UpdateContacts(cnt);
+            ControlRemainingBudget(Decimal.Parse(GetOnlyDecimal(listaRegali.Budget)) - Decimal.Parse(GetTotSpent()));
+
+            //Salvataggio della lista nelle shared preferences
+            Preferences.Set("Lista_Regali", JsonConvert.SerializeObject(lista));
         }
 
         //Metodo dell'interfaccia SelectedContactsPage.ISendSelectedContact che riceve i contatti selezionati dalla pagina di selezione dei contatti
