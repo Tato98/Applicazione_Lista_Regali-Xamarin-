@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applicazione_Lista_Regali.Android", "Applicazione_Lista_Regali\Applicazione_Lista_Regali.Android\Applicazione_Lista_Regali.Android.csproj", "{F8161A21-F500-4D12-8642-294C6D6CB59B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gifty.Android", "Applicazione_Lista_Regali\Applicazione_Lista_Regali.Android\Gifty.Android.csproj", "{F8161A21-F500-4D12-8642-294C6D6CB59B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Applicazione_Lista_Regali.iOS", "Applicazione_Lista_Regali\Applicazione_Lista_Regali.iOS\Applicazione_Lista_Regali.iOS.csproj", "{8D9004CB-8789-4B2A-A2AE-BA671A8C31BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gifty.iOS", "Applicazione_Lista_Regali\Applicazione_Lista_Regali.iOS\Gifty.iOS.csproj", "{8D9004CB-8789-4B2A-A2AE-BA671A8C31BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Applicazione_Lista_Regali", "Applicazione_Lista_Regali\Applicazione_Lista_Regali\Applicazione_Lista_Regali.csproj", "{5959904A-C17D-46B9-9B7E-7414ED6D143D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gifty", "Applicazione_Lista_Regali\Applicazione_Lista_Regali\Gifty.csproj", "{5959904A-C17D-46B9-9B7E-7414ED6D143D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
