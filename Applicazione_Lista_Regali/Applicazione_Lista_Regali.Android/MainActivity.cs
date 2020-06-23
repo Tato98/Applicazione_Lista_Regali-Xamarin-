@@ -20,7 +20,7 @@ using Applicazione_Lista_Regali.Utilities;
 //Classe che gestisce l'avvio dell'applicazione Android
 namespace Applicazione_Lista_Regali.Droid
 {
-    [Activity(Label = "Applicazione_Lista_Regali", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Gifty", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
 
