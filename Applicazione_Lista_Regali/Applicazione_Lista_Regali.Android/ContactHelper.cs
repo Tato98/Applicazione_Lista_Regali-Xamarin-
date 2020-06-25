@@ -10,7 +10,6 @@ using Android.OS;
 using Android.Provider;
 using Android.Runtime;
 using Android.Support.V4.App;
-using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using Applicazione_Lista_Regali.Droid;

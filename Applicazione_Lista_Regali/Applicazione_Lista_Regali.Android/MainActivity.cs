@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Android;
 using Java.Security;
-using Android.Support.V4.Content;
 using Xamarin.Essentials;
 using System.Security.Permissions;
 using System.Threading.Tasks;
